@@ -1,0 +1,16 @@
+package com.example.Hospital_site_2022.Repository;
+
+import com.example.Hospital_site_2022.Entity.Doctor;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+
+@Repository
+public interface DoctorRepository extends CrudRepository<Doctor, Long> {
+
+    List<Doctor> findAll();
+    Optional<Doctor> findById(Long id);
+}

@@ -1,49 +1,101 @@
 package com.example.Hospital_site_2022.Entity;
 
-import lombok.Data;
+import jdk.jshell.Diag;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "patient")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Diagnosis> diagnoses = new java.util.ArrayList<>();
+
+
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "surname")
+    private String surname;
 
-    @Column(name= "residence")
+    @Column(name = "residence")
     private String residence;
 
+    @Column(name = "mail")
+    private String mail;
 
-    // @ManyToMany
-    // @JoinTable(
-    //         name ="doctors_list",
-    //         joinColumns =  @JoinColumn(name = "doctor_id"),
-    //         inverseJoinColumns = @JoinColumn(name = "hospital_id"))
-    // private Set<Doctor> doctors = new java.util.LinkedHashSet<>();
+    @Column(name = "number")
+    private String number;
 
-    @ManyToMany()
-    @JoinTable( name = "patient_diagnoses",
-            joinColumns = @JoinColumn(name= "diagnosis_id"),
-            inverseJoinColumns = @JoinColumn(name = "patient_id")
-    )
-    private Set <Diagnosis> diagnoses = new java.util.LinkedHashSet<>();
 
-    @ManyToMany(mappedBy ="patients")
-    private Set<Doctor> doctors;
 
-    @OneToMany(mappedBy = "patient")
-    Set<ReceptionHours> receptionHours = new java.util.LinkedHashSet<>();
+    public String getName() {
+        return name;
+    }
 
-    //Check Таблица = карта пациента (id, имя, контактные данные, прописка, диагноз
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getResidence() {
+        return residence;
+    }
+
+    public void setResidence(String residence) {
+        this.residence = residence;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 }

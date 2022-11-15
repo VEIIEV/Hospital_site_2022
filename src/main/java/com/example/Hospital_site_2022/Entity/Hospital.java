@@ -1,45 +1,104 @@
 package com.example.Hospital_site_2022.Entity;
 
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "hospitals")
-@Data
+@Table(name = "hospital")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Hospital {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "hospital")
+    private List<Patient> patients = new java.util.ArrayList<>();
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany( mappedBy = "hospital")
+    private List<Doctor> doctors = new java.util.ArrayList<>();
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "mail")
     private String mail;
 
-    @Column(name = "address")
-    private String address;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hospital")
-    private Set<Doctor> doctors;
-
-    // многие ко многим
-   // @ManyToMany
-   // @JoinTable(
-   //         name ="doctors_list",
-   //         joinColumns =  @JoinColumn(name = "doctor_id"),
-   //         inverseJoinColumns = @JoinColumn(name = "hospital_id"))
-   // private Set<Doctor> doctors = new java.util.LinkedHashSet<>();
+    @Column(name = "number")
+    private String number;
 
 
 
 
-    //Таблица = больница(id, название, конатактные заданые, адрес???)
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
+    }
+
+    public List<Doctor> getDorctors() {
+        return doctors;
+    }
+
+    public void setDorctors(List<Doctor> dorctors) {
+        this.doctors = dorctors;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+
 }

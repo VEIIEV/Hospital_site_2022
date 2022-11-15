@@ -1,51 +1,119 @@
 package com.example.Hospital_site_2022.Entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.swing.text.html.HTMLDocument;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "doctor")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
+
+    @ManyToOne
+    @JoinColumn(name = "specialisation_id")
+    private Specialisation specialisation;
+
+
+    //specialisation_id
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
+    private List<ReceptionHour> receptionHours = new java.util.ArrayList<>();
 
     @Column(name = "name")
     private String name;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "specialization_id", referencedColumnName = "id")
-    private Specialization specialization;
-
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "surname")
+    private String surname;
 
     @Column(name = "mail")
     private String mail;
 
-    //подвязали расписание
-    @OneToMany(mappedBy = "doctor")
-    Set<ReceptionHours> receptionHours = new java.util.LinkedHashSet<>();
+    @Column(name = "number")
+    private String number;
 
-    //подвязали пациентов
-    @ManyToMany
-    @JoinTable(name = "doctor_patient",
-            joinColumns = @JoinColumn(name = "doctor_id"))
-    private Set<Patient> patients;
+    @Column(name = "seniority")
+    private String seniority;
 
-    //Таблица = врача (id, имя, контактные данные, список пациентов,кол-во визитов???...)
-    @ManyToOne
-    @JoinColumn(name = "hospital_id", nullable = false)
-    private Hospital hospital;
-    // многие ко многим
-    //@ManyToMany(mappedBy = "doctors")
-    //private Set<Hospital> hospitals;
+    public List<ReceptionHour> getReceptionHours() {
+        return receptionHours;
+    }
 
+    public void setReceptionHours(List<ReceptionHour> receptionHours) {
+        this.receptionHours = receptionHours;
+    }
 
+    public Specialisation getSpecialisation() {
+        return specialisation;
+    }
 
+    public void setSpecialisation(Specialisation specialisation) {
+        this.specialisation = specialisation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getSeniority() {
+        return seniority;
+    }
+
+    public void setSeniority(String seniority) {
+        this.seniority = seniority;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 }
