@@ -16,14 +16,8 @@ import java.util.Optional;
 public interface PatientRepository extends CrudRepository<Patient, Long> {
     List<Patient>  findAll();
 
-
-
     List<Patient>  findAll(Sort sort);
 
-    List<Patient> findAllByOrderByIdAsc();
-    List<Patient> findAllByOrderByIdDesc();
-    List<Patient> findAllByOrderByNameAsc();
-    List<Patient> findAllByOrderByNameDesc();
 
 
      //List<Patient> findAllByRequestedParamByRequestedSort(String sort, String title)

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
@@ -32,16 +31,14 @@ public class PatientService {
             Patient patient = patientMapper.toPatientFromDTO(patientDTO);
             patientRepository.save(patient);
             Patient createdPatient = patientRepository.findById(patient.getId()).orElseThrow();
-            return new ResponseEntity<>(patientMapper.upDTOFromPatient(createdPatient), HttpStatus.OK);
+            return new ResponseEntity<>(patientMapper.toDTOFromPatient(createdPatient), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
     }
 
-    //не обновляет, а создаёт потому что я вкладываю в метод save()
-    //объект patient без id, нужно в мапере его задать
-    //если запрашивать через объект
+
     public ResponseEntity<PatientDTO> updatePatient(PatientDTOWithId patientDTOWithId) {
 
 
@@ -50,7 +47,7 @@ public class PatientService {
                 Patient patient = patientMapper.toPatientFromPatientDTOWithId(patientDTOWithId);
                 patientRepository.save(patient);
                 Patient createdPatient = patientRepository.findById(patient.getId()).orElseThrow();
-                return new ResponseEntity<>(patientMapper.upDTOFromPatient(createdPatient), HttpStatus.OK);
+                return new ResponseEntity<>(patientMapper.toDTOFromPatient(createdPatient), HttpStatus.OK);
             } catch (Exception e) {
                 return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -58,14 +55,21 @@ public class PatientService {
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
-    public int deletePatient(Long id) {
-        patientRepository.deleteById(id);
-        return 1;
+    public ResponseEntity<Integer> deletePatient(Long id) {
+        if (patientRepository.findById(id).isPresent()) {
+            patientRepository.deleteById(id);
+            return new ResponseEntity<>(1, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(-1, HttpStatus.BAD_REQUEST);
     }
 
 
-    public Patient getPatient(Long id) {
-        return patientRepository.findById(id).orElseThrow();
+    public ResponseEntity<PatientDTO> getPatient(Long id) {
+        if (patientRepository.findById(id).isPresent()) {
+            Patient patient = patientRepository.findById(id).orElseThrow();
+            return new ResponseEntity<>(patientMapper.toDTOFromPatient(patient), HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     //выводим всех пользователей по порядку заданному sortMethod,
@@ -74,16 +78,22 @@ public class PatientService {
 
         List<Patient> patients;
 
-        switch (sortMethod) {
-            case "asc":
-                patients = patientRepository.findAll(Sort.by(title).ascending());
-                break;
-            case "desc":
-                patients = patientRepository.findAll(Sort.by(title).descending());
-                break;
-            default: patients= new ArrayList<>();
+        if (!title.isEmpty()) {
+
+            switch (sortMethod) {
+                case "asc":
+                    patients = patientRepository.findAll(Sort.by(title).ascending());
+                    break;
+                case "desc":
+                    patients = patientRepository.findAll(Sort.by(title).descending());
+                    break;
+                default:
+                    patients = new ArrayList<>();
+            }
+        } else {
+            patients = patientRepository.findAll();
         }
-        List<PatientDTO> patientDTOS = patients.stream().map(patientMapper::upDTOFromPatient).toList();
+        List<PatientDTO> patientDTOS = patients.stream().map(patientMapper::toDTOFromPatient).toList();
         return new ResponseEntity<>(patientDTOS, HttpStatus.OK);
     }
 

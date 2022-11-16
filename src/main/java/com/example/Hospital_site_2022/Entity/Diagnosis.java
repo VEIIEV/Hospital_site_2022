@@ -26,6 +26,24 @@ public class Diagnosis {
     @Column(name = "prescribed_treatment")
     private String prescribedTreatment;
 
+    @Column(name = "assign_date")
+    private String assignDate;
+
+    public Diagnosis(Patient patient, String name, String prescribedTreatment, String assignDate) {
+        this.patient = patient;
+        this.name = name;
+        this.prescribedTreatment = prescribedTreatment;
+        this.assignDate = assignDate;
+    }
+
+    public String getAssignDate() {
+        return assignDate;
+    }
+
+    public void setAssignDate(String assignDate) {
+        this.assignDate = assignDate;
+    }
+
     public Patient getPatient() {
         return patient;
     }

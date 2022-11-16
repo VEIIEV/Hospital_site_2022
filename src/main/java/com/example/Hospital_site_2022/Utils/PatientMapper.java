@@ -16,7 +16,7 @@ public class PatientMapper {
         this.hospitalRepository = hospitalRepository;
     }
 
-    public PatientDTO upDTOFromPatient(Patient patient){
+    public PatientDTO toDTOFromPatient(Patient patient){
         return new PatientDTO(
                 patient.getHospital().getId(),
                 patient.getName(),

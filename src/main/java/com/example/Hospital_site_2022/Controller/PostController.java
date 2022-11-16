@@ -29,12 +29,6 @@ public class PostController {
     HospitalService hospitalService;
     SpecialisationService specialisationService;
 
-    @GetMapping("/diagnosis")
-    public String giveMyDiagnosis(@RequestBody Diagnosis diagnosis){
-
-
-        return diagnosis.toString();
-    }
 
     @PostMapping("/saveSpecialisation")
     public String saveSpecialisation(@RequestBody Specialisation specialisation){
