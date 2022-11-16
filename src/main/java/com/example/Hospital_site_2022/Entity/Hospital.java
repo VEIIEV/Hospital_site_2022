@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Hospital {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hospital_gen")
+    @SequenceGenerator(name="hospital_gen", sequenceName="hospital_seq")
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -41,7 +42,12 @@ public class Hospital {
     private String number;
 
 
-
+    public Hospital(String name, String address, String mail, String number) {
+        this.name = name;
+        this.address = address;
+        this.mail = mail;
+        this.number = number;
+    }
 
     public List<Patient> getPatients() {
         return patients;

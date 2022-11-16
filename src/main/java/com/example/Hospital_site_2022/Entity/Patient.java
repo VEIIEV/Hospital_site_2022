@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ public class Patient {
     private Hospital hospital;
 
     @OneToMany(mappedBy = "patient")
-    private List<Diagnosis> diagnoses = new java.util.ArrayList<>();
+    private List<Diagnosis> diagnoses;
 
 
 
@@ -41,7 +42,24 @@ public class Patient {
     @Column(name = "number")
     private String number;
 
+    public Patient(Long id, Hospital hospital, String name, String surname, String residence, String mail, String number) {
+        this.id = id;
+        this.hospital = hospital;
+        this.name = name;
+        this.surname = surname;
+        this.residence = residence;
+        this.mail = mail;
+        this.number = number;
+    }
 
+    public Patient(Hospital hospital, String name, String surname, String residence, String mail, String number) {
+        this.hospital = hospital;
+        this.name = name;
+        this.surname = surname;
+        this.residence = residence;
+        this.mail = mail;
+        this.number = number;
+    }
 
     public String getName() {
         return name;
