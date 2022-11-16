@@ -1,0 +1,36 @@
+2022-11-16 15:40:28.755  INFO 20972 --- [main] c.e.H.HospitalSite2022Application        : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 20972 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-16 15:40:28.760 DEBUG 20972 --- [main] c.e.H.HospitalSite2022Application        : Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-11-16 15:40:28.761  INFO 20972 --- [main] c.e.H.HospitalSite2022Application        : No active profile set, falling back to 1 default profile: "default"
+2022-11-16 15:40:30.199  INFO 20972 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:40:30.200  INFO 20972 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-16 15:40:30.281  INFO 20972 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:40:30.322  INFO 20972 --- [main] c.e.H.F.RequestResponseLoggingFilter     : ########## Initiating CustomURLFilter filter ##########
+2022-11-16 15:40:30.423  INFO 20972 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:40:30.460  INFO 20972 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-16 15:40:30.580  INFO 20972 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:40:30.661  INFO 20972 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:40:30.778  INFO 20972 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:40:30.805  INFO 20972 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-16 15:40:31.606  INFO 20972 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:40:31.837  WARN 20972 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:40:32.048  WARN 20972 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-16 15:40:32.340  INFO 20972 --- [main] c.e.H.HospitalSite2022Application        : Started HospitalSite2022Application in 4.088 seconds (JVM running for 4.704)
+2022-11-16 15:40:53.398  INFO 20972 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-16 15:40:53.402  INFO 20972 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-16 15:40:56.643  INFO 21300 --- [main] c.e.H.HospitalSite2022Application        : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 21300 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-16 15:40:56.646 DEBUG 21300 --- [main] c.e.H.HospitalSite2022Application        : Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-11-16 15:40:56.646  INFO 21300 --- [main] c.e.H.HospitalSite2022Application        : No active profile set, falling back to 1 default profile: "default"
+2022-11-16 15:40:57.702  INFO 21300 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-16 15:40:57.703  INFO 21300 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-16 15:40:57.784  INFO 21300 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-16 15:40:57.824  INFO 21300 --- [main] c.e.H.F.RequestResponseLoggingFilter     : ########## Initiating CustomURLFilter filter ##########
+2022-11-16 15:40:57.933  INFO 21300 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 15:40:57.975  INFO 21300 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-16 15:40:58.096  INFO 21300 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 15:40:58.183  INFO 21300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 15:40:58.304  INFO 21300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 15:40:58.338  INFO 21300 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-16 15:40:59.206  INFO 21300 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 15:40:59.477  WARN 21300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 15:40:59.673  WARN 21300 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-16 15:40:59.889  INFO 21300 --- [main] c.e.H.HospitalSite2022Application        : Started HospitalSite2022Application in 3.591 seconds (JVM running for 4.049)

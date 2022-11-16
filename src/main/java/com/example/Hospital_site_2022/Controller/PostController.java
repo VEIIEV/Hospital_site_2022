@@ -25,12 +25,8 @@ import java.util.HashMap;
 @AllArgsConstructor
 public class PostController {
 
-    
-    DataService dataService;
-    PatientService patientService;
+    //свалка контроллеров, потом удалить и раскидать
     HospitalService hospitalService;
-
-
     SpecialisationService specialisationService;
 
     @GetMapping("/diagnosis")
@@ -46,28 +42,10 @@ public class PostController {
         return "";
     }
 
-    //// controller
-    //@ResponseBody @RequestMapping("/description")
-    //public Description getDescription(@RequestBody UserStats stats){
-    //    return new Description(stats.getFirstName() + " " + stats.getLastname() + " hates wacky wabbits");
-    //}
-
-    @PostMapping("/patient/update")
-    public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTOWithId patientDTOWithId){
-        return patientService.updatePatient(patientDTOWithId);
-    }
-
-    @PostMapping("/patient/create")
-    public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO){
-        return patientService.createPatient(patientDTO);
-    }
-
-
     @PostMapping("/hospital/create")
     public ResponseEntity<HospitalDTO> createHospital(@RequestBody HospitalDTO hospitalDTO){
-
         return hospitalService.createHospital(hospitalDTO);
-
-
     }
+
+
 }

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
@@ -67,8 +68,10 @@ public class PatientService {
         return patientRepository.findById(id).orElseThrow();
     }
 
-    public List<Patient> getAllPatient() {
-        return patientRepository.findAll();
+    public ResponseEntity<List<PatientDTO>> getAllPatient() {
+        List<Patient> patients = patientRepository.findAll();
+        List<PatientDTO> patientDTOS=patients.stream().map(n->patientMapper.upDTOFromPatient(n)).collect(Collectors.toList());
+        return new ResponseEntity<>(patientDTOS, HttpStatus.OK);
     }
 
 
