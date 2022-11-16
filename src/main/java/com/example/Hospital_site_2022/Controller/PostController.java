@@ -2,6 +2,7 @@ package com.example.Hospital_site_2022.Controller;
 
 import com.example.Hospital_site_2022.DTO.HospitalDTO;
 import com.example.Hospital_site_2022.DTO.PatientDTO;
+import com.example.Hospital_site_2022.DTO.PatientDTOWithId;
 import com.example.Hospital_site_2022.Entity.Diagnosis;
 import com.example.Hospital_site_2022.Entity.Hospital;
 import com.example.Hospital_site_2022.Entity.Patient;
@@ -51,10 +52,16 @@ public class PostController {
     //    return new Description(stats.getFirstName() + " " + stats.getLastname() + " hates wacky wabbits");
     //}
 
-//    @PostMapping("/patient/create")
-//    public Patient createPatient(@RequestBody PatientDTO patientDTO){
-//        return patientService.updatePatient(patientDTO);
-//    }
+    @PostMapping("/patient/update")
+    public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTOWithId patientDTOWithId){
+        return patientService.updatePatient(patientDTOWithId);
+    }
+
+    @PostMapping("/patient/create")
+    public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO){
+        return patientService.createPatient(patientDTO);
+    }
+
 
     @PostMapping("/hospital/create")
     public ResponseEntity<HospitalDTO> createHospital(@RequestBody HospitalDTO hospitalDTO){

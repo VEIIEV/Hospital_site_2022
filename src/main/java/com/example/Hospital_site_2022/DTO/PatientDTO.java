@@ -4,16 +4,11 @@ import javax.persistence.Column;
 
 public class PatientDTO {
 
-    private Long hospitalId;
-
+    private Long  hospitalId;
     private String name;
-
     private String surname;
-
     private String residence;
-
     private String mail;
-
     private String number;
 
     public PatientDTO(Long hospitalId, String name, String surname, String residence, String mail, String number) {
