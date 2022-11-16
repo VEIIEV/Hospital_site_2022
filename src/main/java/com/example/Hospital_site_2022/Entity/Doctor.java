@@ -16,9 +16,7 @@ public class Doctor {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "hospital_id")
-    private Hospital hospital;
+
 
     @ManyToOne
     @JoinColumn(name = "specialisation_id")
@@ -28,7 +26,7 @@ public class Doctor {
     //specialisation_id
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
-    private List<ReceptionHour> receptionHours = new java.util.ArrayList<>();
+    private List<ReceptionHour> receptionHours;
 
     @Column(name = "name")
     private String name;
@@ -109,11 +107,5 @@ public class Doctor {
         this.id = id;
     }
 
-    public Hospital getHospital() {
-        return hospital;
-    }
 
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
-    }
 }

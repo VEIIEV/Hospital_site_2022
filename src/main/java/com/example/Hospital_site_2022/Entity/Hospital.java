@@ -23,11 +23,11 @@ public class Hospital {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "hospital")
-    private List<Patient> patients = new java.util.ArrayList<>();
+    private List<Patient> patients;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany( mappedBy = "hospital")
-    private List<Doctor> doctors = new java.util.ArrayList<>();
+    private List<Specialisation> specialisations;
 
     @Column(name = "name")
     private String name;
@@ -57,14 +57,13 @@ public class Hospital {
         this.patients = patients;
     }
 
-    public List<Doctor> getDorctors() {
-        return doctors;
+    public List<Specialisation> getSpecialisations() {
+        return specialisations;
     }
 
-    public void setDorctors(List<Doctor> dorctors) {
-        this.doctors = dorctors;
+    public void setSpecialisations(List<Specialisation> specialisations) {
+        this.specialisations = specialisations;
     }
-
 
     public Long getId() {
         return id;

@@ -17,8 +17,12 @@ public class Specialisation {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "specialisation")
-    private List<Doctor> dorctors = new java.util.ArrayList<>();
+    private List<Doctor> doctors;
 
     @Column(name="name")
     private String name;
