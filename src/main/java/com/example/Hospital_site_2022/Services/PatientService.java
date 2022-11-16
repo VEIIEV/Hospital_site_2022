@@ -6,6 +6,7 @@ import com.example.Hospital_site_2022.DTO.PatientDTOWithId;
 import com.example.Hospital_site_2022.Entity.Patient;
 import com.example.Hospital_site_2022.Repository.PatientRepository;
 import com.example.Hospital_site_2022.Utils.PatientMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -68,8 +69,12 @@ public class PatientService {
         return patientRepository.findById(id).orElseThrow();
     }
 
-    public ResponseEntity<List<PatientDTO>> getAllPatient() {
-        List<Patient> patients = patientRepository.findAll();
+    //выводим всех пользователей по порядку заданному sortMethod,
+    //применяем сортировку к ячейке под названием title
+    public ResponseEntity<List<PatientDTO>> getAllPatient(String sortMethod, String title) {
+
+
+        List<Patient> patients = patientRepository.findAll(Sort.by(""));
         List<PatientDTO> patientDTOS=patients.stream().map(n->patientMapper.upDTOFromPatient(n)).collect(Collectors.toList());
         return new ResponseEntity<>(patientDTOS, HttpStatus.OK);
     }

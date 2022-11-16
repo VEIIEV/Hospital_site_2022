@@ -24,25 +24,33 @@ public class RestPatientController {
 
 
     @PostMapping("/update")
-    public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTOWithId patientDTOWithId){
+    public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTOWithId patientDTOWithId) {
         return patientService.updatePatient(patientDTOWithId);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO){
+    public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO) {
         return patientService.createPatient(patientDTO);
     }
 
+    //выводим всех пользователей по порядку заданному sortMethod,
+    //применяем сортировку к ячейке под названием title
     @GetMapping("/allPatient")
-    public ResponseEntity<List<PatientDTO>> getAllPatients(){
-        return patientService.getAllPatient();
+    public ResponseEntity<List<PatientDTO>> getAllPatients(
+            @RequestParam String sortMothod,
+            @RequestParam String title) {
+        return patientService.getAllPatient(sortMothod, title);
     }
 
-//    @GetMapping("/filteredPatient")
-//    public ResponseEntity <List<PatientDTO>> getFilteredPatients(){
-//        return
-//    }
 
+    //дописать
+    @GetMapping("/filteredPatient")
+    public ResponseEntity<List<PatientDTO>> getFilteredPatients(
+
+    ) {
+
+        return null;
+    }
 
 
 }
