@@ -34,12 +34,19 @@ public class RestPatientController {
     }
 
     //выводим всех пользователей по порядку заданному sortMethod,
-    //применяем сортировку к ячейке под названием title
+    //применяем сортировку к ячейке под названием title=
+
+
+    /**
+     * @param sortMethod asc; desc
+     * @param title field's name
+     * @return
+     */
     @GetMapping("/allPatient")
     public ResponseEntity<List<PatientDTO>> getAllPatients(
-            @RequestParam String sortMothod,
-            @RequestParam String title) {
-        return patientService.getAllPatient(sortMothod, title);
+            @RequestParam("sortMethod") String sortMethod,
+            @RequestParam("title") String title) {
+        return patientService.getAllPatient(sortMethod, title);
     }
 
 

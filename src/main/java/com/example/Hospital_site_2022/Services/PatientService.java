@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,8 +45,6 @@ public class PatientService {
     public ResponseEntity<PatientDTO> updatePatient(PatientDTOWithId patientDTOWithId) {
 
 
-
-
         if (patientRepository.findById(patientDTOWithId.getId()).isPresent()) {
             try {
                 Patient patient = patientMapper.toPatientFromPatientDTOWithId(patientDTOWithId);
@@ -73,9 +72,18 @@ public class PatientService {
     //применяем сортировку к ячейке под названием title
     public ResponseEntity<List<PatientDTO>> getAllPatient(String sortMethod, String title) {
 
+        List<Patient> patients;
 
-        List<Patient> patients = patientRepository.findAll(Sort.by(""));
-        List<PatientDTO> patientDTOS=patients.stream().map(n->patientMapper.upDTOFromPatient(n)).collect(Collectors.toList());
+        switch (sortMethod) {
+            case "asc":
+                patients = patientRepository.findAll(Sort.by(title).ascending());
+                break;
+            case "desc":
+                patients = patientRepository.findAll(Sort.by(title).descending());
+                break;
+            default: patients= new ArrayList<>();
+        }
+        List<PatientDTO> patientDTOS = patients.stream().map(patientMapper::upDTOFromPatient).toList();
         return new ResponseEntity<>(patientDTOS, HttpStatus.OK);
     }
 
