@@ -31,6 +31,12 @@ public class ReceptionHourService {
     //а старые меняли свой статус на завершенный или невостребованный
     @Scheduled(cron = "0 0/30 8-17 * * 1-5")
     public void outdateReceptionHour() {
+        List<ReceptionHour> outdated=receptionHourRepository.findOutdated();
+        outdated.stream().forEach(n-> {
+            n.setStatus(1);
+            receptionHourRepository.save(n);
+        }
+        );
 
     }
 
