@@ -25,7 +25,7 @@ public class SpecialisationMapper {
         );
     }
 
-    public SpecialisationDTO specialisationDTO(Specialisation specialisation){
+    public SpecialisationDTO toDTO(Specialisation specialisation){
         return new SpecialisationDTO(
                 specialisation.getHospital().getId(),
                 specialisation.getName()

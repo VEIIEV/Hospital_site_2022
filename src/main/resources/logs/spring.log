@@ -237,3 +237,5 @@ Consider defining a bean of type 'java.lang.Long' in your configuration.
 2022-11-17 14:44:42.247  WARN 17544 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2022-11-17 14:44:42.456  WARN 17544 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
 2022-11-17 14:44:42.640  INFO 17544 --- [main] c.e.H.HospitalSite2022Application        : Started HospitalSite2022Application in 3.874 seconds (JVM running for 4.646)
+2022-11-17 14:49:20.983  INFO 17544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-17 14:49:20.985  INFO 17544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

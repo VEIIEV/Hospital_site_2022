@@ -1,8 +1,7 @@
 package com.example.Hospital_site_2022.Controller;
 
 
-import com.example.Hospital_site_2022.DTO.PatientDTO;
-import com.example.Hospital_site_2022.DTO.PatientDTOWithId;
+import com.example.Hospital_site_2022.DTO.SpecialisationDTO;
 import com.example.Hospital_site_2022.Entity.Specialisation;
 import com.example.Hospital_site_2022.Services.SpecialisationService;
 import lombok.AllArgsConstructor;
@@ -10,25 +9,24 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Entity;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @EnableAutoConfiguration
 @RequestMapping("/api/specialisation")
-public class RestPatientSpecialisation {
+public class RestSpecialisationController {
 
     private final SpecialisationService specialisationService;
 
     @PostMapping("/create")
-    public ResponseEntity<Specialisation> createSpecialisation(@RequestBody Specialisation specialisation) {
-        return specialisationService.createSpecialisation(specialisation);
+    public ResponseEntity<SpecialisationDTO> createSpecialisation(@RequestBody SpecialisationDTO specialisationDTO) {
+        return specialisationService.createSpecialisation(specialisationDTO);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Specialisation> updateSpecialisation(@RequestBody Specialisation specialisation) {
-        return specialisationService.updateSpecialisation(specialisation);
+    public ResponseEntity<SpecialisationDTO> updateSpecialisation(@RequestBody SpecialisationDTO specialisationDTO) {
+        return specialisationService.updateSpecialisation(specialisationDTO);
     }
 
     @PostMapping("/delete")
@@ -37,7 +35,7 @@ public class RestPatientSpecialisation {
     }
 
     @PostMapping("/getSpecialisation")
-    public ResponseEntity<Specialisation> getSpecialisation(@RequestParam(value = "id") Long id){
+    public ResponseEntity<SpecialisationDTO> getSpecialisation(@RequestParam(value = "id") Long id){
         return  specialisationService.getSpecialisation(id);
     }
 
@@ -48,7 +46,7 @@ public class RestPatientSpecialisation {
      * @return
      */
     @GetMapping("/allSpecialisation")
-    public ResponseEntity<List<Specialisation>> getAllSpecialisations(
+    public ResponseEntity<List<SpecialisationDTO>> getAllSpecialisations(
             @RequestParam(value = "sortMethod", required = false) String sortMethod,
             @RequestParam(value = "title", required = false) String title) {
         return specialisationService.getAllSpecialisation(sortMethod, title);
