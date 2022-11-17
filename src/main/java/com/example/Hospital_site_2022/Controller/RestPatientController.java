@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/api/patient")
 public class RestPatientController {
 
-    PatientService patientService;
+    private final PatientService patientService;
 
     @PostMapping("/create")
     public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO) {

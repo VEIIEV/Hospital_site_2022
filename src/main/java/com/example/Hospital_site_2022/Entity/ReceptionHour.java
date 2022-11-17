@@ -25,8 +25,25 @@ public class ReceptionHour {
     // и т.д каждый имеет свой sequenceNumber
     private int sequenceNumber;
 
+    private int date;
+
     //3 варианта, не назначено, назначено, завершено.
     private int status;
+
+    public ReceptionHour(Doctor doctor, int sequenceNumber, int date, int status) {
+        this.doctor = doctor;
+        this.sequenceNumber = sequenceNumber;
+        this.date = date;
+        this.status = status;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
 
     public int getSequenceNumber() {
         return sequenceNumber;
