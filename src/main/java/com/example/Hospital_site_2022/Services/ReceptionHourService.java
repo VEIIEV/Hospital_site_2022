@@ -12,7 +12,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReceptionHourService {
@@ -27,16 +29,36 @@ public class ReceptionHourService {
         this.receptionHourMapper = receptionHourMapper;
     }
 
-    //я хочу что бы новые данные появлялись в таблице, через каждые полтора часа
-    //а старые меняли свой статус на завершенный или невостребованный
-    @Scheduled(cron = "0 0/30 8-17 * * 1-5")
+
+    //переделать
+    // должно не всем ставить 1
+    //а разделять на 1 и 2
+    @Scheduled(cron = "* 0/30 8-17 * * 1-5")
     public void outdateReceptionHour() {
-        List<ReceptionHour> outdated=receptionHourRepository.findOutdated();
-        outdated.stream().forEach(n-> {
-            n.setStatus(1);
-            receptionHourRepository.save(n);
-        }
+        List<ReceptionHour> outdated = receptionHourRepository.findOutdated();
+        outdated.stream().forEach(n -> {
+                    if (n.getStatus() == 3) {
+                        n.setStatus(1);
+                    } else if (n.getStatus() == 4) {
+                        n.setStatus(2);
+                    }
+                    receptionHourRepository.save(n);
+                }
         );
+
+    }
+
+    public ResponseEntity<ReceptionHourDTO> makeAppointment(ReceptionHourDTO receptionHourDTO){
+        try {
+            ReceptionHour receptionHour = receptionHourMapper.toReceptionHour(receptionHourDTO);
+            ReceptionHour existedReceptionHour = receptionHourRepository.findByDateTime(receptionHour.getDateTime()).orElseThrow();
+            receptionHour.setId(existedReceptionHour.getId());
+            receptionHour.setStatus(4);
+            receptionHourRepository.save(receptionHour);
+            return new ResponseEntity<>(receptionHourMapper.toDTO(receptionHour), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
 
     }
 
@@ -54,11 +76,13 @@ public class ReceptionHourService {
 
     public ResponseEntity<Integer> createMonthScheduleFor(Long doctorId) {
         Doctor doctor = doctorService.getDoctor(doctorId).getBody();
-        LocalDateTime localDateTime = LocalDateTime.now();
+        String str = LocalDateTime.now().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        LocalDateTime localDateTime = LocalDateTime.parse(str, formatter);
         for (int i = 1; i < 31; i++) {
             for (int j = 8; j < 16; j++) {
-                localDateTime = localDateTime.withHour(j).withDayOfMonth(i);
-                ReceptionHour receptionHour = new ReceptionHour(doctor, localDateTime,3);
+                localDateTime = localDateTime.withHour(j).withDayOfMonth(i).withMinute(30).withSecond(0).withNano(0);
+                ReceptionHour receptionHour = new ReceptionHour(doctor, localDateTime, 3);
                 receptionHourRepository.save(receptionHour);
             }
         }
@@ -109,7 +133,7 @@ public class ReceptionHourService {
     }
 
     public ResponseEntity<List<ReceptionHourDTO>> findOutdated() {
-        List<ReceptionHour> receptionHours =receptionHourRepository.findOutdated();
+        List<ReceptionHour> receptionHours = receptionHourRepository.findOutdated();
 
         List<ReceptionHourDTO> receptionHourDTOS = receptionHours.stream().map(receptionHourMapper::toDTO).toList();
 

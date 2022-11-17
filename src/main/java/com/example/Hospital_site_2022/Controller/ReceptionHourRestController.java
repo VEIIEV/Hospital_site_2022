@@ -27,14 +27,20 @@ public class ReceptionHourRestController {
         return receptionHourService.findOutdated();
     }
 
-    @PostMapping("/createForMonth")
-    public ResponseEntity<Integer> createForMonth(@RequestParam("doctor_id") Long doctor_id){
-        return receptionHourService.createMonthScheduleFor(doctor_id);
+
+    @PostMapping("/makeAppointment") ResponseEntity<ReceptionHourDTO> makeAppointment(@RequestBody ReceptionHourDTO receptionHourDTO){
+        return  receptionHourService.makeAppointment(receptionHourDTO);
     }
+
 
     @PostMapping("/create")
     public ResponseEntity<ReceptionHourDTO> create(@RequestBody ReceptionHourDTO receptionHourDTO){
         return receptionHourService.createReceptionHour(receptionHourDTO);
+    }
+
+    @PostMapping("/createForMonth")
+    public ResponseEntity<Integer> createForMonth(@RequestParam("doctor_id") Long doctor_id){
+        return receptionHourService.createMonthScheduleFor(doctor_id);
     }
 
     @PostMapping("/update")

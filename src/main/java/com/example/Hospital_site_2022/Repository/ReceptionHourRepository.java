@@ -17,6 +17,8 @@ public interface ReceptionHourRepository extends CrudRepository<ReceptionHour, L
     List<ReceptionHour> findAll();
     List<ReceptionHour> findAll(Sort sort);
 
+    Optional<ReceptionHour> findByDateTime(LocalDateTime localDateTime);
+
     Optional<ReceptionHour> findById(Long id);
 
 
@@ -27,6 +29,7 @@ public interface ReceptionHourRepository extends CrudRepository<ReceptionHour, L
 
     @Query(value = " select * from hospital.reception_hour where  (status=3 or  status = 4 ) and reception_hour.date_time < current_date;", nativeQuery = true)
     List<ReceptionHour> findOutdated();
+
 
 
 
