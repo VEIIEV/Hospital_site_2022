@@ -29,10 +29,10 @@ public class ReceptionHour {
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 
-    //4 варианта, не назначено, назначено, не востребовано, завершено,.
+    //4 варианта, 1)не востребовано,2) завершено,3) не назначено, 4)назначено,
 
     @Column(name = "status")
-    private int status;
+    private int status=3;
 
     public ReceptionHour(Doctor doctor, LocalDateTime dateTime, int status) {
         this.doctor = doctor;

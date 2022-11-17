@@ -2,16 +2,27 @@ package com.example.Hospital_site_2022.DTO;
 
 public class ReceptionHourDTO {
 
+    private Long id;
+
     private Long doctor_id;
 
     private String dateTime;
 
     private int status;
 
-    public ReceptionHourDTO(Long doctor_id, String dateTime, int status) {
+    public ReceptionHourDTO(Long id,Long doctor_id, String dateTime, int status) {
+        this.id=id;
         this.doctor_id = doctor_id;
         this.dateTime = dateTime;
         this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getDoctor_id() {

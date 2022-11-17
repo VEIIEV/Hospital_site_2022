@@ -22,6 +22,7 @@ public class ReceptionHourMapper {
 
     public ReceptionHourDTO toDTO(ReceptionHour receptionHour){
         return new ReceptionHourDTO(
+                receptionHour.getId(),
                 receptionHour.getDoctor().getId(),
                 receptionHour.getDateTime().toString(),
                 receptionHour.getStatus()
