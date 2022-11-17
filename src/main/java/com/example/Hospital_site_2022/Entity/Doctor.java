@@ -12,7 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_gen")
+    @SequenceGenerator(name="doctor_gen", sequenceName="doctor_seq")
     @Column(name = "id", nullable = false)
     private Long id;
 

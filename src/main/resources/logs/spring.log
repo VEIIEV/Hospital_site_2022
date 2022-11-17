@@ -239,3 +239,57 @@ Consider defining a bean of type 'java.lang.Long' in your configuration.
 2022-11-17 14:44:42.640  INFO 17544 --- [main] c.e.H.HospitalSite2022Application        : Started HospitalSite2022Application in 3.874 seconds (JVM running for 4.646)
 2022-11-17 14:49:20.983  INFO 17544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-11-17 14:49:20.985  INFO 17544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-17 14:59:15.020  INFO 16044 --- [main] c.e.H.HospitalSite2022Application        : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 16044 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-17 14:59:15.023 DEBUG 16044 --- [main] c.e.H.HospitalSite2022Application        : Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-11-17 14:59:15.023  INFO 16044 --- [main] c.e.H.HospitalSite2022Application        : No active profile set, falling back to 1 default profile: "default"
+2022-11-17 14:59:16.163  INFO 16044 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-17 14:59:16.164  INFO 16044 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-17 14:59:16.245  INFO 16044 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-17 14:59:16.284  INFO 16044 --- [main] c.e.H.F.RequestResponseLoggingFilter     : ########## Initiating CustomURLFilter filter ##########
+2022-11-17 14:59:16.423  INFO 16044 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-17 14:59:16.462  INFO 16044 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-17 14:59:16.590  INFO 16044 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-17 14:59:16.679  INFO 16044 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-17 14:59:16.811  INFO 16044 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-17 14:59:16.852  INFO 16044 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-17 14:59:17.546  INFO 16044 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-17 14:59:17.818  WARN 16044 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-17 14:59:18.018  WARN 16044 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-17 14:59:18.288  INFO 16044 --- [main] c.e.H.HospitalSite2022Application        : Started HospitalSite2022Application in 3.594 seconds (JVM running for 4.072)
+2022-11-17 14:59:21.022  INFO 16044 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-17 14:59:21.029  INFO 16044 --- [http-nio-8080-exec-2] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/doctor/create
+2022-11-17 14:59:21.030  INFO 16044 --- [http-nio-8080-exec-2] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:02:49.255  INFO 16044 --- [http-nio-8080-exec-5] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/doctor/create
+2022-11-17 15:02:49.256  INFO 16044 --- [http-nio-8080-exec-5] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:03:53.279  INFO 16044 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-17 15:03:53.283  INFO 16044 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-17 15:03:57.375  INFO 17592 --- [main] c.e.H.HospitalSite2022Application        : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 17592 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-17 15:03:57.378 DEBUG 17592 --- [main] c.e.H.HospitalSite2022Application        : Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-11-17 15:03:57.378  INFO 17592 --- [main] c.e.H.HospitalSite2022Application        : No active profile set, falling back to 1 default profile: "default"
+2022-11-17 15:03:58.515  INFO 17592 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-17 15:03:58.516  INFO 17592 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-17 15:03:58.602  INFO 17592 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-17 15:03:58.644  INFO 17592 --- [main] c.e.H.F.RequestResponseLoggingFilter     : ########## Initiating CustomURLFilter filter ##########
+2022-11-17 15:03:58.748  INFO 17592 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-17 15:03:58.784  INFO 17592 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-17 15:03:58.907  INFO 17592 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-17 15:03:58.985  INFO 17592 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-17 15:03:59.114  INFO 17592 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-17 15:03:59.145  INFO 17592 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-17 15:03:59.790  INFO 17592 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-17 15:04:00.090  WARN 17592 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-17 15:04:00.282  WARN 17592 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-17 15:04:00.455  INFO 17592 --- [main] c.e.H.HospitalSite2022Application        : Started HospitalSite2022Application in 3.49 seconds (JVM running for 3.955)
+2022-11-17 15:05:29.326  INFO 17592 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-17 15:05:29.333  INFO 17592 --- [http-nio-8080-exec-1] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/specialisation/create
+2022-11-17 15:05:29.334  INFO 17592 --- [http-nio-8080-exec-1] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:05:41.172  INFO 17592 --- [http-nio-8080-exec-6] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/specialisation/create
+2022-11-17 15:05:41.173  INFO 17592 --- [http-nio-8080-exec-6] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:05:41.884  INFO 17592 --- [http-nio-8080-exec-5] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/specialisation/create
+2022-11-17 15:05:41.884  INFO 17592 --- [http-nio-8080-exec-5] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:05:45.875  INFO 17592 --- [http-nio-8080-exec-7] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/doctor/create
+2022-11-17 15:05:45.875  INFO 17592 --- [http-nio-8080-exec-7] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:05:46.530  INFO 17592 --- [http-nio-8080-exec-2] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  POST : /api/doctor/create
+2022-11-17 15:05:46.531  INFO 17592 --- [http-nio-8080-exec-2] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-17 15:06:10.940  INFO 17592 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-17 15:06:10.944  INFO 17592 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
