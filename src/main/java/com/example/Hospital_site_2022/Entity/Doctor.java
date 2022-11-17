@@ -38,6 +38,15 @@ public class Doctor {
     @Column(name = "seniority")
     private String seniority;
 
+    public Doctor(Specialisation specialisation, String name, String surname, String mail, String number, String seniority) {
+        this.specialisation = specialisation;
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.number = number;
+        this.seniority = seniority;
+    }
+
     public List<ReceptionHour> getReceptionHours() {
         return receptionHours;
     }

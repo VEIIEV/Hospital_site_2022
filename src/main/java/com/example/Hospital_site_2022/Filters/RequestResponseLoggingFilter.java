@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 @Slf4j
-@WebFilter(urlPatterns = "/api/patient/*", filterName = "RRLogFilter")
+@WebFilter(urlPatterns = "/api/*", filterName = "RRLogFilter")
 public class RequestResponseLoggingFilter implements Filter {
 
 

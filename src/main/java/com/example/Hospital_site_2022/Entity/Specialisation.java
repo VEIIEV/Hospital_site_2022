@@ -27,6 +27,19 @@ public class Specialisation {
     @Column(name="name")
     private String name;
 
+    public Specialisation(Hospital hospital, String name) {
+        this.hospital = hospital;
+        this.name = name;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
     public String getName() {
         return name;
     }

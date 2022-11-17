@@ -1,5 +1,6 @@
 package com.example.Hospital_site_2022.Controller;
 
+import com.example.Hospital_site_2022.DTO.DoctorDTO;
 import com.example.Hospital_site_2022.DTO.PatientDTO;
 import com.example.Hospital_site_2022.DTO.PatientDTOWithId;
 import com.example.Hospital_site_2022.Entity.Doctor;
@@ -21,13 +22,13 @@ public class RestDoctorController {
     private final DoctorService doctorService;
 
     @PostMapping("/create")
-    public ResponseEntity<Doctor> createDoctor(@RequestBody Doctor Doctor) {
-        return doctorService.createDoctor(Doctor);
+    public ResponseEntity<DoctorDTO> createDoctor(@RequestBody DoctorDTO doctorDTO) {
+        return doctorService.createDoctor(doctorDTO);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Doctor> updateDoctor(@RequestBody Doctor doctor) {
-        return doctorService.updateDoctor(doctor);
+    public ResponseEntity<Doctor> updateDoctor(@RequestBody DoctorDTO doctorDTO) {
+        return doctorService.updateDoctor(doctorDTO);
     }
 
     @PostMapping("/delete")
