@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.print.attribute.standard.MediaSize;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reception_hour")
@@ -11,46 +13,39 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ReceptionHour {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reception_hour_gen")
+    @SequenceGenerator(name="reception_hour_gen", sequenceName="reception_hour_seq")    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    // график приёма чётко привязан ко времени
-    // первый приём с 8:00 до 8: 30
-    // второй приём с 8:35 до 9:35
-    // и т.д каждый имеет свой sequenceNumber
-    private int sequenceNumber;
 
-    private int date;
 
-    //3 варианта, не назначено, назначено, завершено.
+    //dateFormat:  yyyy-mm-ddThh:mm:ssZ like 2011-12-03T10:15:30-03:00
+    //DateTimeFormatter.ISO_DATE_TIME
+
+    @Column(name = "date_time")
+    private LocalDateTime dateTime;
+
+    //4 варианта, не назначено, назначено, не востребовано, завершено,.
+
+    @Column(name = "status")
     private int status;
 
-    public ReceptionHour(Doctor doctor, int sequenceNumber, int date, int status) {
+    public ReceptionHour(Doctor doctor, LocalDateTime dateTime, int status) {
         this.doctor = doctor;
-        this.sequenceNumber = sequenceNumber;
-        this.date = date;
+        this.dateTime = dateTime;
         this.status = status;
     }
 
-    public int getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(int date) {
-        this.date = date;
-    }
-
-    public int getSequenceNumber() {
-        return sequenceNumber;
-    }
-
-    public void setSequenceNumber(int sequenceNumber) {
-        this.sequenceNumber = sequenceNumber;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public int getStatus() {

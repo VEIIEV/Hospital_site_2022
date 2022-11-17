@@ -16,14 +16,9 @@ public class Doctor {
     @Column(name = "id", nullable = false)
     private Long id;
 
-
-
     @ManyToOne
     @JoinColumn(name = "specialisation_id")
     private Specialisation specialisation;
-
-
-    //specialisation_id
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private List<ReceptionHour> receptionHours;

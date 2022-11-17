@@ -30,11 +30,6 @@ public class PostController {
     SpecialisationService specialisationService;
 
 
-    @PostMapping("/saveSpecialisation")
-    public String saveSpecialisation(@RequestBody Specialisation specialisation){
-        specialisationService.saveSpecialisation(specialisation);
-        return "";
-    }
 
     @PostMapping("/hospital/create")
     public ResponseEntity<HospitalDTO> createHospital(@RequestBody HospitalDTO hospitalDTO){
