@@ -1,11 +1,9 @@
 package com.example.Hospital_site_2022.Entity;
 
-import jdk.jshell.Diag;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

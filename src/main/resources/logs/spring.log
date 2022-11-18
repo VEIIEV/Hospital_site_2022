@@ -389,3 +389,5 @@ java.time.format.DateTimeParseException: Text '2022-11-18T00:19:32.269587' could
 2022-11-18 00:29:44.270  INFO 1364 --- [http-nio-8080-exec-1] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
 2022-11-18 00:29:47.899  INFO 1364 --- [http-nio-8080-exec-3] c.e.H.F.RequestResponseLoggingFilter     : Logging Request  GET : /api/receptionHour/test
 2022-11-18 00:29:47.899  INFO 1364 --- [http-nio-8080-exec-3] c.e.H.F.RequestResponseLoggingFilter     : Logging Response :200
+2022-11-18 04:11:43.356  INFO 1364 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-18 04:11:43.372  INFO 1364 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
