@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @EnableAutoConfiguration
@@ -44,6 +45,22 @@ public class RestPatientCardController {
             @RequestParam(value = "title", required = false) String title) {
         return patientCardService.getAllPatientCard(sortMethod, title);
     }
+
+
+
+    @GetMapping("/visitByDoctor")
+    public ResponseEntity<Set<PatientCardDTO>> getVisitByDoctor(@RequestParam(value = "doctorId") Long dockorId){
+        return  patientCardService.getPatientCardByDoctorId(dockorId);
+    }
+
+    @GetMapping("/visitByPatient")
+    public ResponseEntity<Set<PatientCardDTO>> getVisitByPatient(@RequestParam(value = "patientId") Long patientId){
+        return  patientCardService.getPatientCardByPatientId(patientId);
+    }
+
+
+
+
 
     //создать метод, который выводит количество пациентов с определенным диагнозом
 

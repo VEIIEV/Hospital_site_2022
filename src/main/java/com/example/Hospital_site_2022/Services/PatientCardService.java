@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientCardService {
@@ -79,4 +81,17 @@ public class PatientCardService {
     }
 
 
+    public ResponseEntity<Set<PatientCardDTO>> getPatientCardByDoctorId(Long dockorId) {
+        Set<PatientCard> patientCards = patientCardRepository.findAllByDoctorId(dockorId);
+        Set<PatientCardDTO> patientCardDTOS= patientCards.stream().map(mapper::toDTO).collect(Collectors.toSet());
+
+        return new ResponseEntity<>(patientCardDTOS, HttpStatus.OK) ;
+    }
+
+    public ResponseEntity<Set<PatientCardDTO>> getPatientCardByPatientId(Long patientId) {
+        Set<PatientCard> patientCards = patientCardRepository.findAllByPatientId(patientId);
+        Set<PatientCardDTO> patientCardDTOS= patientCards.stream().map(mapper::toDTO).collect(Collectors.toSet());
+
+        return new ResponseEntity<>(patientCardDTOS, HttpStatus.OK) ;
+    }
 }

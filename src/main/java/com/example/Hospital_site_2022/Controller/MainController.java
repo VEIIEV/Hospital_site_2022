@@ -1,6 +1,7 @@
 package com.example.Hospital_site_2022.Controller;
 
 
+import com.example.Hospital_site_2022.Services.CleanDBService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class MainController {
 
+    CleanDBService cleanDBService;
 
     @GetMapping("/hello")
     public String helloSite() {
@@ -20,7 +22,11 @@ public class MainController {
             return "Requested data is null";
     }
 
-
+    @GetMapping("/deleteAllDATA")
+    public String deleteAllData(){
+        cleanDBService.cleanDB();
+        return "deal's done";
+    }
 
 
 

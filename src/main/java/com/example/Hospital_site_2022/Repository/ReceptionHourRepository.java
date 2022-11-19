@@ -2,6 +2,7 @@ package com.example.Hospital_site_2022.Repository;
 
 import com.example.Hospital_site_2022.Entity.ReceptionHour;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -22,10 +23,11 @@ public interface ReceptionHourRepository extends CrudRepository<ReceptionHour, L
     Optional<ReceptionHour> findById(Long id);
 
 
-   // Optional<ReceptionHour> findMinDate();
 
-   //  :#{currentdate}
 
+
+    @Modifying
+    void deleteAllBy();
 
     @Query(value = " select * from hospital.reception_hour where  (status=3 or  status = 4 ) and reception_hour.date_time < current_date;", nativeQuery = true)
     List<ReceptionHour> findOutdated();

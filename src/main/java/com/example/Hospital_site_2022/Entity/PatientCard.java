@@ -38,7 +38,7 @@ public class PatientCard {
     private String assignDate;
 
     @Column(name = "doctor_id")
-    private Long doctor_id;
+    private Long doctorId;
 
 
     public Set<Diagnosis> getDiagnoses() {
@@ -49,12 +49,12 @@ public class PatientCard {
         this.diagnoses = diagnoses;
     }
 
-    public PatientCard(Patient patient, Set<Diagnosis> diagnoses, String prescribedTreatment, String assignDate, Long doctor_id) {
+    public PatientCard(Patient patient, Set<Diagnosis> diagnoses, String prescribedTreatment, String assignDate, Long doctorId) {
         this.patient = patient;
         this.diagnoses = diagnoses;
         this.prescribedTreatment = prescribedTreatment;
         this.assignDate = assignDate;
-        this.doctor_id = doctor_id;
+        this.doctorId = doctorId;
     }
 
 
@@ -92,10 +92,10 @@ public class PatientCard {
     }
 
     public Long getDoctor_id() {
-        return doctor_id;
+        return doctorId;
     }
 
-    public void setDoctor_id(Long doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctor_id(Long doctorId) {
+        this.doctorId = doctorId;
     }
 }

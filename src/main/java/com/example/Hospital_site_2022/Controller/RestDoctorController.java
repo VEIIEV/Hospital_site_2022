@@ -1,17 +1,15 @@
 package com.example.Hospital_site_2022.Controller;
 
 import com.example.Hospital_site_2022.DTO.DoctorDTO;
-import com.example.Hospital_site_2022.DTO.PatientDTO;
-import com.example.Hospital_site_2022.DTO.PatientDTOWithId;
 import com.example.Hospital_site_2022.Entity.Doctor;
 import com.example.Hospital_site_2022.Services.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @EnableAutoConfiguration
@@ -39,6 +37,13 @@ public class RestDoctorController {
     @PostMapping("/getDoctor")
     public ResponseEntity<Doctor> getDoctor(@RequestParam(value = "id") Long id){
         return  doctorService.getDoctor(id);
+    }
+
+
+
+    @GetMapping("/doctorBySpecialisation")
+    public ResponseEntity<Set<String>> getDoctorBySpecialisation(@RequestParam(value = "specialisation") String specialisation){
+        return doctorService.getDoctorBySpecialisation(specialisation);
     }
 
     /**

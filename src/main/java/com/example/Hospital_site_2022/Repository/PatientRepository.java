@@ -4,6 +4,7 @@ import com.example.Hospital_site_2022.Entity.Doctor;
 import com.example.Hospital_site_2022.Entity.Patient;
 import org.apache.catalina.User;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,8 @@ public interface PatientRepository extends UserRepository {
 
     List<Patient>  findAll(Sort sort);
 
-
+    @Modifying
+    void deleteAllBy();
 
      //List<Patient> findAllByRequestedParamByRequestedSort(String sort, String title)
 

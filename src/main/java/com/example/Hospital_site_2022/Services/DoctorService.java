@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -73,6 +75,12 @@ public class DoctorService {
             default -> doctorRepository.findAll();
         };
 
+        return new ResponseEntity<>(doctors, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Set<String>> getDoctorBySpecialisation(String specialisation) {
+        Set<String> doctors= doctorRepository.findBySpecialisation_Name(specialisation);
+        doctors=doctors.stream().map(n->n.replace(",",", " )).collect(Collectors.toSet());
         return new ResponseEntity<>(doctors, HttpStatus.OK);
     }
 }
