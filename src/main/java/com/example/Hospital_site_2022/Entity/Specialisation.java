@@ -21,7 +21,7 @@ public class Specialisation {
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "specialisation")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "specialisation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Doctor> doctors;
 
     @Column(name="name")

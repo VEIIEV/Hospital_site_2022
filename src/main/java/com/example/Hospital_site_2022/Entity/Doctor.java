@@ -21,7 +21,7 @@ public class Doctor extends User {
     @JoinColumn(name = "specialisation_id")
     private Specialisation specialisation;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReceptionHour> receptionHours;
 
 

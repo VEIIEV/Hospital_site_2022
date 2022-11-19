@@ -22,11 +22,11 @@ public class Hospital {
 
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "hospital")
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Patient> patients;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany( mappedBy = "hospital")
+    @OneToMany( mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Specialisation> specialisations;
 
     @Column(name = "name")

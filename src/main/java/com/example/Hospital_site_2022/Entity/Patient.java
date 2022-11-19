@@ -16,7 +16,7 @@ public class Patient extends User {
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PatientCard> diagnoses;
 
     @Column(name = "surname")
