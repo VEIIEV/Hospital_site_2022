@@ -80,7 +80,7 @@ public class DoctorService {
 
     public ResponseEntity<Set<String>> getDoctorBySpecialisation(String specialisation) {
         Set<String> doctors= doctorRepository.findBySpecialisation_Name(specialisation);
-        doctors=doctors.stream().map(n->n.replace(",",", " )).collect(Collectors.toSet());
+        doctors=doctors.stream().map(n->specialisation+": "+n.replace(",",", " )).collect(Collectors.toSet());
         return new ResponseEntity<>(doctors, HttpStatus.OK);
     }
 }
