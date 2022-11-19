@@ -1,10 +1,11 @@
 package com.example.Hospital_site_2022.Entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "diagnosis")
@@ -12,45 +13,35 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Diagnosis {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diag_gen")
-    @SequenceGenerator(name = "diag_gen", sequenceName = "diag_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diagnosis_gen")
+    @SequenceGenerator(name = "diagnosis_gen", sequenceName = "diagnosis_seq")
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
+    @ManyToMany(mappedBy = "diagnoses")
+    private Set<PatientCard> patientCards = new LinkedHashSet<>();
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "prescribed_treatment")
-    private String prescribedTreatment;
+    @Column(name = "discription")
+    private String discription;
 
-    @Column(name = "assign_date")
-    private String assignDate;
-
-    public Diagnosis(Patient patient, String name, String prescribedTreatment, String assignDate) {
-        this.patient = patient;
-        this.name = name;
-        this.prescribedTreatment = prescribedTreatment;
-        this.assignDate = assignDate;
+    public Set<PatientCard> getPatientCards() {
+        return patientCards;
     }
 
-    public String getAssignDate() {
-        return assignDate;
+    public void setPatientCards(Set<PatientCard> patientCards) {
+        this.patientCards = patientCards;
     }
 
-    public void setAssignDate(String assignDate) {
-        this.assignDate = assignDate;
+
+    public Long getId() {
+        return id;
     }
 
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -61,19 +52,11 @@ public class Diagnosis {
         this.name = name;
     }
 
-    public String getPrescribedTreatment() {
-        return prescribedTreatment;
+    public String getDiscription() {
+        return discription;
     }
 
-    public void setPrescribedTreatment(String prescribedTreatment) {
-        this.prescribedTreatment = prescribedTreatment;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setDiscription(String discription) {
+        this.discription = discription;
     }
 }

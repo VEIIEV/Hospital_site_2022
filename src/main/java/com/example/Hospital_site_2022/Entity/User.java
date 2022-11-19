@@ -1,7 +1,7 @@
 package com.example.Hospital_site_2022.Entity;
 
 
-import com.example.Hospital_site_2022.model.UserRole;
+import com.example.Hospital_site_2022.enums.UserRole;
 
 import javax.persistence.*;
 

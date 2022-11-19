@@ -1,7 +1,5 @@
 package com.example.Hospital_site_2022.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
 
@@ -19,7 +17,7 @@ public class Patient extends User {
     private Hospital hospital;
 
     @OneToMany(mappedBy = "patient")
-    private List<Diagnosis> diagnoses;
+    private List<PatientCard> diagnoses;
 
     @Column(name = "surname")
     private String surname;

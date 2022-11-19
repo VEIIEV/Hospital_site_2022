@@ -1,4 +1,4 @@
-create table hospital.diagnosis
+create table hospital.patientCard
 (
     id                   bigint not null
         primary key,
@@ -10,6 +10,6 @@ create table hospital.diagnosis
     assign_date          varchar(255)
 );
 
-alter table hospital.diagnosis
+alter table hospital.patientCard
     owner to postgres;
 

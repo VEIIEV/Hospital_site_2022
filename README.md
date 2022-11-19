@@ -4,7 +4,7 @@
 
 A web application implemented as an application programming interface polyclinic 
 registry with the possibility,based on the data of registration of visits,
-it is necessary to analyze the workload of doctors, as well as to keep morbidity statistics for each diagnosis
+it is necessary to analyze the workload of doctors, as well as to keep morbidity statistics for each patientCard
 
 1. THE BASIS FOR THE DEVELOPMENT
 

@@ -1,27 +1,30 @@
 package com.example.Hospital_site_2022.DTO;
 
-import com.example.Hospital_site_2022.Entity.Patient;
+import com.example.Hospital_site_2022.Entity.Doctor;
 
-import javax.persistence.Column;
+import java.util.Set;
 
-public class DiagnosisDTO {
+public class PatientCardDTO {
 
     private Long id;
 
     private Long patientId;
 
-    private String name;
+    private Long doctorId;
 
     private String prescribedTreatment;
 
     private String assignDate;
 
-    public DiagnosisDTO(Long id, Long patientId, String name, String prescribedTreatment, String assignDate) {
+    private Set<String> diagnoses;
+
+    public PatientCardDTO(Long id, Long patientId, Long doctorId, String prescribedTreatment, String assignDate, Set<String> diagnoses) {
         this.id = id;
         this.patientId = patientId;
-        this.name = name;
+        this.doctorId = doctorId;
         this.prescribedTreatment = prescribedTreatment;
         this.assignDate = assignDate;
+        this.diagnoses = diagnoses;
     }
 
     public Long getId() {
@@ -40,12 +43,12 @@ public class DiagnosisDTO {
         this.patientId = patientId;
     }
 
-    public String getName() {
-        return name;
+    public Long getDoctorId() {
+        return doctorId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getPrescribedTreatment() {
@@ -62,5 +65,13 @@ public class DiagnosisDTO {
 
     public void setAssignDate(String assignDate) {
         this.assignDate = assignDate;
+    }
+
+    public Set<String> getDiagnoses() {
+        return diagnoses;
+    }
+
+    public void setDiagnoses(Set<String> diagnoses) {
+        this.diagnoses = diagnoses;
     }
 }

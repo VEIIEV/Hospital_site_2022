@@ -1,20 +1,13 @@
 package com.example.Hospital_site_2022.Repository;
 
 import com.example.Hospital_site_2022.Entity.Diagnosis;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
-@Repository
-public interface   DiagnosisRepository extends CrudRepository<Diagnosis, Long> {
+public interface DiagnosisRepository extends CrudRepository<Diagnosis, Long> {
 
-    Optional<Diagnosis> findById(Long id );
-
-    List<Diagnosis> findAll();
-
-
-    List<Diagnosis> findAll(Sort sort);
+    @Query("select d from Diagnosis d inner join d.patientCards patientCards where patientCards.id = ?1")
+    Set<Diagnosis> findAllByPatientCards_id(Long id);
 }

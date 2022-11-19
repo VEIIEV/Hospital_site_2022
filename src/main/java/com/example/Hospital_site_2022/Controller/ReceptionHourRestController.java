@@ -1,17 +1,12 @@
 package com.example.Hospital_site_2022.Controller;
 
-import com.example.Hospital_site_2022.DTO.DiagnosisDTO;
 import com.example.Hospital_site_2022.DTO.ReceptionHourDTO;
-import com.example.Hospital_site_2022.Entity.ReceptionHour;
-import com.example.Hospital_site_2022.Repository.ReceptionHourRepository;
 import com.example.Hospital_site_2022.Services.ReceptionHourService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
