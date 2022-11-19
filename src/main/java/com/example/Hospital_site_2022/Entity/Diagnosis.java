@@ -12,7 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Diagnosis {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diag_gen")
+    @SequenceGenerator(name = "diag_gen", sequenceName = "diag_seq")
     @Column(name = "id", nullable = false)
     private Long id;
 

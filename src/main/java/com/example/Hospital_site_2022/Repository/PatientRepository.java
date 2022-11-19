@@ -2,6 +2,7 @@ package com.example.Hospital_site_2022.Repository;
 
 import com.example.Hospital_site_2022.Entity.Doctor;
 import com.example.Hospital_site_2022.Entity.Patient;
+import org.apache.catalina.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface PatientRepository extends CrudRepository<Patient, Long> {
+public interface PatientRepository extends UserRepository {
     List<Patient>  findAll();
 
     List<Patient>  findAll(Sort sort);

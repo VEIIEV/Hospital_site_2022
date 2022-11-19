@@ -13,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Specialisation {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "spec_gen")
+    @SequenceGenerator(name = "spec_gen", sequenceName = "spec_seq")    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne

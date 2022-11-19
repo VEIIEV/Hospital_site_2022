@@ -2,20 +2,17 @@ package com.example.Hospital_site_2022.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "patient")
-@AllArgsConstructor
-@NoArgsConstructor
-public class Patient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_gen")
-    @SequenceGenerator(name="patient_gen", sequenceName="patient_seq")
-    @Column(name = "id", nullable = false)
-    private Long id;
+@PrimaryKeyJoinColumn(name = "patientId")
+@Polymorphism(type = PolymorphismType.EXPLICIT)
+public class Patient extends User {
 
     @ManyToOne
     @JoinColumn(name = "hospital_id")
@@ -24,49 +21,44 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     private List<Diagnosis> diagnoses;
 
-
-
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "surname")
     private String surname;
 
     @Column(name = "residence")
     private String residence;
 
-    @Column(name = "mail")
-    private String mail;
-
-    @Column(name = "number")
-    private String number;
-
-    public Patient(Long id, Hospital hospital, String name, String surname, String residence, String mail, String number) {
-        this.id = id;
+    public Patient(Long id, String login, String password, String token, String name, String mail, String number,  Hospital hospital,  String surname, String residence) {
+        super(id, login, password, token, name, mail, number);
         this.hospital = hospital;
-        this.name = name;
         this.surname = surname;
         this.residence = residence;
-        this.mail = mail;
-        this.number = number;
+    }
+
+    public Patient( String login, String password, String token, String name, String mail, String number,  Hospital hospital,  String surname, String residence) {
+        super(login, password, token, name, mail, number);
+        this.hospital = hospital;
+        this.surname = surname;
+        this.residence = residence;
     }
 
     public Patient(Hospital hospital, String name, String surname, String residence, String mail, String number) {
+        super(name, mail, number);
         this.hospital = hospital;
-        this.name = name;
         this.surname = surname;
         this.residence = residence;
-        this.mail = mail;
-        this.number = number;
     }
 
-    public String getName() {
-        return name;
+    public Patient(Long id, Hospital hospital, String name, String surname, String residence, String mail, String number) {
+        super(id, name, mail, number);
+        this.hospital = hospital;
+        this.surname = surname;
+        this.residence = residence;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Patient() {
+        super();
     }
+
 
     public String getSurname() {
         return surname;
@@ -82,30 +74,6 @@ public class Patient {
 
     public void setResidence(String residence) {
         this.residence = residence;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Hospital getHospital() {

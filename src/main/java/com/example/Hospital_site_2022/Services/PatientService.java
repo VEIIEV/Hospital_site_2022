@@ -6,14 +6,17 @@ import com.example.Hospital_site_2022.DTO.PatientDTOWithId;
 import com.example.Hospital_site_2022.Entity.Patient;
 import com.example.Hospital_site_2022.Repository.PatientRepository;
 import com.example.Hospital_site_2022.Utils.PatientMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+
+@Slf4j
 @Service
 public class PatientService {
 
@@ -32,7 +35,8 @@ public class PatientService {
             patientRepository.save(patient);
             Patient createdPatient = patientRepository.findById(patient.getId()).orElseThrow();
             return new ResponseEntity<>(patientMapper.toDTOFromPatient(createdPatient), HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
+            log.info(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 

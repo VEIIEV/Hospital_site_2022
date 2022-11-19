@@ -2,6 +2,8 @@ package com.example.Hospital_site_2022.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,12 +12,10 @@ import java.util.List;
 @Table(name = "doctor")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Doctor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_gen")
-    @SequenceGenerator(name="doctor_gen", sequenceName="doctor_seq")
-    @Column(name = "id", nullable = false)
-    private Long id;
+@PrimaryKeyJoinColumn(name = "doctor_id")
+@Polymorphism(type = PolymorphismType.EXPLICIT)
+public class Doctor extends User {
+
 
     @ManyToOne
     @JoinColumn(name = "specialisation_id")
@@ -24,27 +24,24 @@ public class Doctor {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private List<ReceptionHour> receptionHours;
 
-    @Column(name = "name")
-    private String name;
 
     @Column(name = "surname")
     private String surname;
-
-    @Column(name = "mail")
-    private String mail;
-
-    @Column(name = "number")
-    private String number;
 
     @Column(name = "seniority")
     private String seniority;
 
     public Doctor(Specialisation specialisation, String name, String surname, String mail, String number, String seniority) {
+        super(name, mail, number);
         this.specialisation = specialisation;
-        this.name = name;
         this.surname = surname;
-        this.mail = mail;
-        this.number = number;
+        this.seniority = seniority;
+    }
+
+    public Doctor(String login, String password, String token, String name, String mail, String number, Specialisation specialisation,  String surname,   String seniority) {
+        super(login, password, token, name, mail, number);
+        this.specialisation = specialisation;
+        this.surname = surname;
         this.seniority = seniority;
     }
 
@@ -64,13 +61,7 @@ public class Doctor {
         this.specialisation = specialisation;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getSurname() {
         return surname;
@@ -80,22 +71,6 @@ public class Doctor {
         this.surname = surname;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public String getSeniority() {
         return seniority;
     }
@@ -103,14 +78,5 @@ public class Doctor {
     public void setSeniority(String seniority) {
         this.seniority = seniority;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface DoctorRepository extends CrudRepository<Doctor, Long> {
+public interface DoctorRepository extends UserRepository {
 
     List<Doctor> findAll();
     List<Doctor> findAll(Sort sort);
