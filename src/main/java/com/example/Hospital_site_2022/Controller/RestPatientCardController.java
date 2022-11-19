@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @EnableAutoConfiguration
 @AllArgsConstructor
-@RequestMapping("/api/diagnosis")
+@RequestMapping("/api/patientCard")
 public class RestPatientCardController {
 
     PatientCardService patientCardService;

@@ -25,8 +25,10 @@ public class PatientCardMapper {
 
     public PatientCard toPatientCard(PatientCardDTO patientCardDTO) {
         Patient patient = patientRepository.findById(patientCardDTO.getPatientId()).orElseThrow();
+        Set<Diagnosis> diagnoses = diagnosisRepository.findAllByNameIn(patientCardDTO.getDiagnoses());
         return new PatientCard(
                 patient,
+                diagnoses,
                 patientCardDTO.getPrescribedTreatment(),
                 patientCardDTO.getAssignDate(),
                 patientCardDTO.getDoctorId()

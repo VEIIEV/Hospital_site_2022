@@ -10,4 +10,7 @@ public interface DiagnosisRepository extends CrudRepository<Diagnosis, Long> {
 
     @Query("select d from Diagnosis d inner join d.patientCards patientCards where patientCards.id = ?1")
     Set<Diagnosis> findAllByPatientCards_id(Long id);
+
+    @Query("select d from Diagnosis d where d.name in ?1")
+    Set<Diagnosis> findAllByNameIn(Set<String> names);
 }

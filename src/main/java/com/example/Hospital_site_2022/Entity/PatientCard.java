@@ -49,12 +49,15 @@ public class PatientCard {
         this.diagnoses = diagnoses;
     }
 
-    public PatientCard(Patient patient, String prescribedTreatment, String assignDate, Long doctor_id) {
+    public PatientCard(Patient patient, Set<Diagnosis> diagnoses, String prescribedTreatment, String assignDate, Long doctor_id) {
         this.patient = patient;
+        this.diagnoses = diagnoses;
         this.prescribedTreatment = prescribedTreatment;
         this.assignDate = assignDate;
         this.doctor_id = doctor_id;
     }
+
+
 
     public String getAssignDate() {
         return assignDate;

@@ -25,14 +25,11 @@ public class PatientCardService {
     }
 
     public ResponseEntity<PatientCardDTO> createPatientCard(@RequestBody PatientCardDTO patientCardDTO) {
-        try {
             PatientCard patientCard = mapper.toPatientCard(patientCardDTO);
             patientCardRepository.save(patientCard);
             PatientCard createdPatientCard = patientCardRepository.findById(patientCard.getId()).orElseThrow();
             return new ResponseEntity<>(mapper.toDTO(createdPatientCard), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+
 
 
     }
