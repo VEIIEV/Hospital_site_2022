@@ -18,6 +18,10 @@ public class PatientDTO {
         this.number = number;
     }
 
+    public PatientDTO(){
+        this.name ="no DATA in DB";
+    }
+
     public Long getHospitalId() {
         return hospitalId;
     }

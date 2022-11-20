@@ -20,6 +20,8 @@ import java.util.NoSuchElementException;
 @Service
 public class PatientService {
 
+
+
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
 
@@ -79,7 +81,10 @@ public class PatientService {
     //применяем сортировку к ячейке под названием title
     public ResponseEntity<List<PatientDTO>> getAllPatient(String sortMethod, String title) {
 
+
         List<Patient> patients;
+        //if(title.isEmpty()){ title="id";}
+
             patients = switch (sortMethod) {
                 case "asc" -> patientRepository.findAll(Sort.by(title).ascending());
                 case "desc" -> patientRepository.findAll(Sort.by(title).descending());

@@ -5,9 +5,13 @@ import com.example.DTO.PatientDTOWithId;
 import com.example.Services.PatientService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,8 +51,12 @@ public class RestPatientController {
     @GetMapping("/allPatient")
     public ResponseEntity<List<PatientDTO>> getAllPatients(
             @RequestParam(value = "sortMethod", required = false) String sortMethod,
-            @RequestParam(value = "title", required = false) String title) {
-        return patientService.getAllPatient(sortMethod, title);
+            @RequestParam(value = "title", required = false) String title,
+            WebRequest webRequest) {
+        webRequest.setAttribute("sortMethod", sortMethod, RequestAttributes.SCOPE_REQUEST);
+        webRequest.setAttribute("title", title, RequestAttributes.SCOPE_REQUEST);
+            return patientService.getAllPatient(sortMethod, title);
+
     }
 
 
