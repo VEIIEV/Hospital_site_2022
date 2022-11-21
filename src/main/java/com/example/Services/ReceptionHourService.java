@@ -48,16 +48,19 @@ public class ReceptionHourService {
 
     }
 
-    public ResponseEntity<ReceptionHourDTO> makeAppointment(ReceptionHourDTO receptionHourDTO){
+    //этот запрос найдёт мне часы всех врачей, нужно находить во времени и id доктора
+
+    public ResponseEntity<ReceptionHourDTO> makeAppointment(ReceptionHourDTO receptionHourDTO) {
         try {
             ReceptionHour receptionHour = receptionHourMapper.toReceptionHour(receptionHourDTO);
-            ReceptionHour existedReceptionHour = receptionHourRepository.findByDateTime(receptionHour.getDateTime()).orElseThrow();
+            ReceptionHour existedReceptionHour = receptionHourRepository.findDistinctTopByDateTimeAndDoctor_IdAndStatus(receptionHour.getDateTime(), receptionHour.getDoctor().getId(), 3).orElseThrow();
             receptionHour.setId(existedReceptionHour.getId());
             receptionHour.setStatus(4);
             receptionHourRepository.save(receptionHour);
             return new ResponseEntity<>(receptionHourMapper.toDTO(receptionHour), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
     }
@@ -77,7 +80,7 @@ public class ReceptionHourService {
     public ResponseEntity<Integer> createMonthScheduleFor(Long doctorId) {
         Doctor doctor = doctorService.getDoctor(doctorId).getBody();
 
-        try{
+        try {
             Long dcid = doctor.getId();
             String str = LocalDateTime.now().toString();
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
@@ -87,11 +90,13 @@ public class ReceptionHourService {
                     localDateTime = localDateTime.withHour(j).withDayOfMonth(i).withMinute(30).withSecond(0).withNano(0);
                     ReceptionHour receptionHour = new ReceptionHour(doctor, localDateTime, 3);
                     System.out.println(receptionHour.getDoctor().getId());
-                    receptionHourRepository.save(receptionHour);
+                    if (receptionHourRepository.findDistinctTopByDateTimeAndDoctor_Id(localDateTime, doctorId).isEmpty()) {
+                        receptionHourRepository.save(receptionHour);
+                    }
                 }
             }
             return new ResponseEntity<>(1, HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

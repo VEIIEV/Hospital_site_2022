@@ -2345,3 +2345,147 @@ java.lang.NullPointerException: Cannot invoke "com.example.Entity.Doctor.getId()
 2022-11-21 07:41:02.627  WARN 19452 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
 2022-11-21 07:41:02.780  INFO 19452 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 2.947 seconds (JVM running for 3.349)
 2022-11-21 07:41:06.426  INFO 19452 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 07:44:46.041  INFO 19452 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 07:44:46.044  INFO 19452 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 07:44:51.322  INFO 8284 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 8284 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 07:44:51.324  INFO 8284 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 07:44:52.257  INFO 8284 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 07:44:52.257  INFO 8284 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 07:44:52.329  INFO 8284 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 07:44:52.453  INFO 8284 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 07:44:52.489  INFO 8284 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 07:44:52.594  INFO 8284 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 07:44:52.659  INFO 8284 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 07:44:52.770  INFO 8284 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 07:44:52.797  INFO 8284 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 07:44:53.383  INFO 8284 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 07:44:53.764  WARN 8284 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 07:44:53.931  WARN 8284 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 07:44:54.088  INFO 8284 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 3.113 seconds (JVM running for 3.608)
+2022-11-21 07:46:03.108  INFO 8284 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 07:50:50.378  INFO 8284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 07:50:50.380  INFO 8284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 07:50:54.599  INFO 17988 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 17988 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 07:50:54.601  INFO 17988 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 07:50:55.480  INFO 17988 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 07:50:55.481  INFO 17988 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 07:50:55.548  INFO 17988 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 07:50:55.663  INFO 17988 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 07:50:55.694  INFO 17988 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 07:50:55.799  INFO 17988 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 07:50:55.868  INFO 17988 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 07:50:55.974  INFO 17988 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 07:50:56.002  INFO 17988 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 07:50:56.587  INFO 17988 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 07:50:56.951  WARN 17988 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 07:50:57.104  WARN 17988 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 07:50:57.256  INFO 17988 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 2.919 seconds (JVM running for 3.312)
+2022-11-21 07:51:01.925  INFO 17988 --- [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 07:55:25.593  INFO 17988 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 07:55:25.598  INFO 17988 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 07:55:30.843  INFO 13248 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 13248 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 07:55:30.845  INFO 13248 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 07:55:31.748  INFO 13248 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 07:55:31.749  INFO 13248 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 07:55:31.819  INFO 13248 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 07:55:31.942  INFO 13248 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 07:55:31.977  INFO 13248 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 07:55:32.085  INFO 13248 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 07:55:32.150  INFO 13248 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 07:55:32.252  INFO 13248 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 07:55:32.280  INFO 13248 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 07:55:32.855  INFO 13248 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 07:55:33.217  WARN 13248 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 07:55:33.411  WARN 13248 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 07:55:33.578  INFO 13248 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 3.046 seconds (JVM running for 3.466)
+2022-11-21 07:55:37.866  INFO 13248 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 07:58:50.267  INFO 13248 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 07:58:50.269  INFO 13248 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 07:58:53.869  INFO 6760 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 6760 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 07:58:53.871  INFO 6760 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 07:58:54.809  INFO 6760 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 07:58:54.811  INFO 6760 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 07:58:54.902  INFO 6760 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 07:58:55.078  INFO 6760 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 07:58:55.149  INFO 6760 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 07:58:55.285  INFO 6760 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 07:58:55.360  INFO 6760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 07:58:55.482  INFO 6760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 07:58:55.511  INFO 6760 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 07:58:56.099  INFO 6760 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 07:58:56.502  WARN 6760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 07:58:56.664  WARN 6760 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 07:58:56.814  INFO 6760 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 3.203 seconds (JVM running for 3.568)
+2022-11-21 07:58:57.120  INFO 6760 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 08:01:01.883  INFO 6760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 08:01:01.886  INFO 6760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 08:01:24.852  INFO 18016 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 18016 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 08:01:24.854  INFO 18016 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 08:01:25.800  INFO 18016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 08:01:25.801  INFO 18016 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 08:01:25.869  INFO 18016 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 08:01:25.988  INFO 18016 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 08:01:26.021  INFO 18016 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 08:01:26.129  INFO 18016 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 08:01:26.198  INFO 18016 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 08:01:26.303  INFO 18016 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 08:01:26.330  INFO 18016 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 08:01:26.912  INFO 18016 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 08:01:27.278  WARN 18016 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 08:01:27.441  WARN 18016 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 08:01:27.602  INFO 18016 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 3.028 seconds (JVM running for 3.419)
+2022-11-21 08:01:30.006  INFO 18016 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 08:07:30.720  INFO 18016 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 08:07:30.723  INFO 18016 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 08:07:34.963  INFO 7976 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 7976 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 08:07:34.965  INFO 7976 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 08:07:35.868  INFO 7976 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 08:07:35.869  INFO 7976 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 08:07:35.936  INFO 7976 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 08:07:36.057  INFO 7976 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 08:07:36.088  INFO 7976 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 08:07:36.190  INFO 7976 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 08:07:36.254  INFO 7976 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 08:07:36.359  INFO 7976 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 08:07:36.386  INFO 7976 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 08:07:36.969  INFO 7976 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 08:07:37.331  WARN 7976 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 08:07:37.495  WARN 7976 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 08:07:37.650  INFO 7976 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 2.944 seconds (JVM running for 3.314)
+2022-11-21 08:07:40.341  INFO 7976 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 08:08:40.071  INFO 7976 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 08:08:40.073  INFO 7976 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 08:08:43.670  INFO 7792 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 7792 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 08:08:43.672  INFO 7792 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 08:08:44.560  INFO 7792 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 08:08:44.560  INFO 7792 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 08:08:44.628  INFO 7792 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 08:08:44.742  INFO 7792 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 08:08:44.774  INFO 7792 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 08:08:44.877  INFO 7792 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 08:08:44.940  INFO 7792 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 08:08:45.045  INFO 7792 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 08:08:45.072  INFO 7792 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 08:08:45.648  INFO 7792 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 08:08:46.019  WARN 7792 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 08:08:46.174  WARN 7792 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 08:08:46.327  INFO 7792 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 2.917 seconds (JVM running for 3.338)
+2022-11-21 08:08:48.718  INFO 7792 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-21 08:10:26.474  INFO 7792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-21 08:10:26.476  INFO 7792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-21 08:10:30.029  INFO 4924 --- [main] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 18.0.2.1 on DESKTOP-2NIGHVL with PID 4924 (C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022)
+2022-11-21 08:10:30.031  INFO 4924 --- [main] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-11-21 08:10:30.950  INFO 4924 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-21 08:10:30.951  INFO 4924 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-21 08:10:31.021  INFO 4924 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-21 08:10:31.145  INFO 4924 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-21 08:10:31.179  INFO 4924 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-21 08:10:31.285  INFO 4924 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 08:10:31.353  INFO 4924 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-21 08:10:31.454  INFO 4924 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-21 08:10:31.481  INFO 4924 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-11-21 08:10:32.050  INFO 4924 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 08:10:32.423  WARN 4924 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-21 08:10:32.582  WARN 4924 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-11-21 08:10:32.739  INFO 4924 --- [main] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 2.994 seconds (JVM running for 3.442)
+2022-11-21 08:10:36.071  INFO 4924 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'

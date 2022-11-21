@@ -51,6 +51,13 @@ public class ReceptionHour {
         this.status = status;
     }
 
+    public ReceptionHour(Doctor doctor,Patient patient, LocalDateTime dateTime, int status) {
+        this.doctor = doctor;
+        this.patient=patient;
+        this.dateTime = dateTime;
+        this.status = status;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
