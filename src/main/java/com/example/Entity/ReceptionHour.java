@@ -33,6 +33,18 @@ public class ReceptionHour {
     @Column(name = "status")
     private int status=3;
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     public ReceptionHour(Doctor doctor, LocalDateTime dateTime, int status) {
         this.doctor = doctor;
         this.dateTime = dateTime;
