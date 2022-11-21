@@ -1,10 +1,13 @@
 package com.example.Entity;
 
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.lang.Nullable;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,11 +35,13 @@ public class Hospital {
     @Column(name = "name")
     private String name;
 
+
     @Column(name = "address")
     private String address;
 
     @Column(name = "mail")
     private String mail;
+
 
     @Column(name = "number")
     private String number;

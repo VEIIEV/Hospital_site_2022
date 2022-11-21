@@ -4,9 +4,11 @@ package com.example.Controller;
 import com.example.Services.CleanDBService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @EnableAutoConfiguration
@@ -19,20 +21,23 @@ public class MainController {
     @GetMapping("/hello")
     public String helloSite() {
 
-            return "Requested data is null";
+        return "Requested data is null";
     }
 
     @GetMapping("/deleteAllDATA")
-    public String deleteAllData(){
+    public String deleteAllData() {
         cleanDBService.cleanDB();
         return "deal's done";
     }
 
-
-
-
-
-
+    @GetMapping("/throwException")
+    public void throwException() {
+        try {
+            throw new Exception();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "that your exception, just like you wish ",e);
+        }
+    }
 
 
 }

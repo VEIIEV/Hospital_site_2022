@@ -21,9 +21,13 @@ public class PatientMapper {
                 patient.getHospital().getId(),
                 patient.getName(),
                 patient.getSurname(),
+                patient.getLogin(),
+                patient.getPassword(),
+                patient.getToken(),
                 patient.getResidence(),
                 patient.getMail(),
                 patient.getNumber()
+
         );
     }
 
@@ -33,6 +37,9 @@ public class PatientMapper {
                 hospital,
                 patientDTO.getName(),
                 patientDTO.getSurname(),
+                patientDTO.getLogin(),
+                patientDTO.getToken(),
+                patientDTO.getPassword(),
                 patientDTO.getResidence(),
                 patientDTO.getMail(),
                 patientDTO.getNumber()
