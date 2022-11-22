@@ -6,13 +6,17 @@ public class ReceptionHourDTO {
 
     private Long doctor_id;
 
+
+    private Long patient_id;
+
     private String dateTime;
 
     private int status;
 
-    public ReceptionHourDTO(Long id,Long doctor_id, String dateTime, int status) {
+    public ReceptionHourDTO(Long id,Long doctor_id, Long patient_id, String dateTime, int status) {
         this.id=id;
         this.doctor_id = doctor_id;
+        this.patient_id=patient_id;
         this.dateTime = dateTime;
         this.status = status;
     }
@@ -47,5 +51,13 @@ public class ReceptionHourDTO {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Long getPatient_id() {
+        return patient_id;
+    }
+
+    public void setPatient_id(Long patient_id) {
+        this.patient_id = patient_id;
     }
 }

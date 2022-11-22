@@ -2,6 +2,7 @@ package com.example.Services;
 
 
 import com.example.DTO.PatientCardDTO;
+import com.example.DTO.UniversalDTO;
 import com.example.Entity.PatientCard;
 import com.example.Repository.PatientCardRepository;
 import com.example.Utils.PatientCardMapper;
@@ -11,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -93,5 +96,14 @@ public class PatientCardService {
         Set<PatientCardDTO> patientCardDTOS= patientCards.stream().map(mapper::toDTO).collect(Collectors.toSet());
 
         return new ResponseEntity<>(patientCardDTOS, HttpStatus.OK) ;
+    }
+
+    public ResponseEntity<Set<UniversalDTO>> countVisetPerDoctor() {
+        return new ResponseEntity<>( patientCardRepository.findByCountedDoctorId(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Set<UniversalDTO>> countDiagnosisPerPatient() {
+
+        return  new ResponseEntity<>(patientCardRepository.findByCountedDiagnoses(), HttpStatus.OK);
     }
 }

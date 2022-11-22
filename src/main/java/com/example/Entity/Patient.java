@@ -5,7 +5,9 @@ import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "patient")
@@ -20,13 +22,25 @@ public class Patient extends User {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PatientCard> diagnoses;
 
+
     @Column(name = "surname")
     private String surname;
 
     @Column(name = "residence")
     private String residence;
 
-    public Patient(Long id, String login, String password, String token, String name, String mail, String number,  Hospital hospital,  String surname, String residence) {
+    @OneToMany(mappedBy = "patient", orphanRemoval = true)
+    private Set<ReceptionHour> receptionHours = new LinkedHashSet<>();
+
+    public Set<ReceptionHour> getReceptionHours() {
+        return receptionHours;
+    }
+
+    public void setReceptionHours(Set<ReceptionHour> receptionHours) {
+        this.receptionHours = receptionHours;
+    }
+
+    public Patient(Long id, String login, String password, String token, String name, String mail, String number, Hospital hospital, String surname, String residence) {
         super(id, login, password, token, name, mail, number);
         this.hospital = hospital;
         this.surname = surname;

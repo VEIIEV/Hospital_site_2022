@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,16 +48,19 @@ public class ReceptionHourService {
 
     }
 
-    public ResponseEntity<ReceptionHourDTO> makeAppointment(ReceptionHourDTO receptionHourDTO){
+    //этот запрос найдёт мне часы всех врачей, нужно находить во времени и id доктора
+
+    public ResponseEntity<ReceptionHourDTO> makeAppointment(ReceptionHourDTO receptionHourDTO) {
         try {
             ReceptionHour receptionHour = receptionHourMapper.toReceptionHour(receptionHourDTO);
-            ReceptionHour existedReceptionHour = receptionHourRepository.findByDateTime(receptionHour.getDateTime()).orElseThrow();
+            ReceptionHour existedReceptionHour = receptionHourRepository.findDistinctTopByDateTimeAndDoctor_IdAndStatus(receptionHour.getDateTime(), receptionHour.getDoctor().getId(), 3).orElseThrow();
             receptionHour.setId(existedReceptionHour.getId());
             receptionHour.setStatus(4);
             receptionHourRepository.save(receptionHour);
             return new ResponseEntity<>(receptionHourMapper.toDTO(receptionHour), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
     }
@@ -75,17 +79,26 @@ public class ReceptionHourService {
 
     public ResponseEntity<Integer> createMonthScheduleFor(Long doctorId) {
         Doctor doctor = doctorService.getDoctor(doctorId).getBody();
-        String str = LocalDateTime.now().toString();
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        LocalDateTime localDateTime = LocalDateTime.parse(str, formatter);
-        for (int i = 1; i < 31; i++) {
-            for (int j = 8; j < 16; j++) {
-                localDateTime = localDateTime.withHour(j).withDayOfMonth(i).withMinute(30).withSecond(0).withNano(0);
-                ReceptionHour receptionHour = new ReceptionHour(doctor, localDateTime, 3);
-                receptionHourRepository.save(receptionHour);
+
+        try {
+            Long dcid = doctor.getId();
+            String str = LocalDateTime.now().toString();
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+            LocalDateTime localDateTime = LocalDateTime.parse(str, formatter);
+            for (int i = 1; i < 31; i++) {
+                for (int j = 8; j < 16; j++) {
+                    localDateTime = localDateTime.withHour(j).withDayOfMonth(i).withMinute(30).withSecond(0).withNano(0);
+                    ReceptionHour receptionHour = new ReceptionHour(doctor, localDateTime, 3);
+                    System.out.println(receptionHour.getDoctor().getId());
+                    if (receptionHourRepository.findDistinctTopByDateTimeAndDoctor_Id(localDateTime, doctorId).isEmpty()) {
+                        receptionHourRepository.save(receptionHour);
+                    }
+                }
             }
+            return new ResponseEntity<>(1, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-        return new ResponseEntity<>(1, HttpStatus.OK);
     }
 
     public ResponseEntity<ReceptionHourDTO> updateReceptionHour(ReceptionHourDTO receptionHourDTO) {

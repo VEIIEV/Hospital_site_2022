@@ -31,12 +31,12 @@ public class MainController {
     }
 
     @GetMapping("/throwException")
-    public void throwException() {
-        try {
-            throw new Exception();
+    public String throwException() {
+        try {throw  new Exception();
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "that your exception, just like you wish ",e);
+            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "congradulation, that you long waited exception");
         }
+
     }
 
 
