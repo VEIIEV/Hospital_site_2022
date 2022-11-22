@@ -1,5 +1,6 @@
 package com.example.Entity;
 
+import com.example.enums.UserRole;
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
 
@@ -48,6 +49,13 @@ public class Patient extends User {
 
     public Patient(Long id, Hospital hospital, String name, String surname, String residence, String mail, String number) {
         super(id, name, mail, number);
+        this.hospital = hospital;
+        this.surname = surname;
+        this.residence = residence;
+    }
+
+    public Patient(UserRole userRole, String login, String password, String name, String mail, String number, Hospital hospital, String surname, String residence) {
+        super(userRole, login, password, name, mail, number);
         this.hospital = hospital;
         this.surname = surname;
         this.residence = residence;

@@ -1,5 +1,6 @@
 package com.example.Entity;
 
+import com.example.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Polymorphism;
@@ -31,11 +32,16 @@ public class Doctor extends User {
     @Column(name = "seniority")
     private String seniority;
 
+
+
+
+
     public Doctor(Specialisation specialisation, String name, String surname, String mail, String number, String seniority) {
         super(name, mail, number);
         this.specialisation = specialisation;
         this.surname = surname;
         this.seniority = seniority;
+        super.setUserRole(UserRole.DOCTOR);
     }
 
     public Doctor(String login, String password, String token, String name, String mail, String number, Specialisation specialisation,  String surname,   String seniority) {
@@ -43,6 +49,7 @@ public class Doctor extends User {
         this.specialisation = specialisation;
         this.surname = surname;
         this.seniority = seniority;
+        super.setUserRole(UserRole.DOCTOR);
     }
 
     public List<ReceptionHour> getReceptionHours() {

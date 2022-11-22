@@ -1,7 +1,10 @@
 package com.example.DTO;
 
+import com.example.enums.UserRole;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class PatientDTO {
@@ -9,16 +12,23 @@ public class PatientDTO {
     private Long  hospitalId;
     private String name;
     private String surname;
-
-    private String login;
-
-    private String password;
-
-
     private String token;
     private String residence;
-    private String mail;
     private String number;
+
+    final private UserRole userRole= UserRole.PATIENT;
+
+    @NotNull
+    @NotEmpty
+    private String login;
+
+    @NotNull
+    @NotEmpty
+    private String password;
+
+    @NotNull
+    @NotEmpty
+    private String mail;
 
     public PatientDTO(Long hospitalId, String name, String surname, String residence, String mail, String number) {
         this.hospitalId = hospitalId;
@@ -29,7 +39,18 @@ public class PatientDTO {
         this.number = number;
     }
 
-    public PatientDTO(Long hospitalId, String name, String surname, String login, String password,String token, String residence, String mail, String number) {
+    public PatientDTO(Long hospitalId, String name, String surname, String residence, String number, String login, String password, String mail) {
+        this.hospitalId = hospitalId;
+        this.name = name;
+        this.surname = surname;
+        this.residence = residence;
+        this.number = number;
+        this.login = login;
+        this.password = password;
+        this.mail = mail;
+    }
+
+    public PatientDTO(Long hospitalId, String name, String surname, String login, String password, String token, String residence, String mail, String number) {
         this.hospitalId = hospitalId;
         this.name = name;
         this.surname = surname;
@@ -43,6 +64,10 @@ public class PatientDTO {
 
     public PatientDTO(){
         this.name ="no DATA in DB";
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
     }
 
     public Long getHospitalId() {
@@ -116,4 +141,6 @@ public class PatientDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

@@ -23,13 +23,9 @@ public abstract class User {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
-    @NotEmpty
-    @Min(value = 6,message = "login must be  at least 6 character ")
     @Column(name = "login")
     private String login;
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message="password must be between 3 and 20 char")
     @Column(name = "password")
     private String password;
 
@@ -62,6 +58,15 @@ public abstract class User {
         this.login = login;
         this.password = password;
         this.token = token;
+        this.name = name;
+        this.mail = mail;
+        this.number = number;
+    }
+
+    public User(UserRole userRole, String login, String password, String name, String mail, String number) {
+        this.userRole = userRole;
+        this.login = login;
+        this.password = password;
         this.name = name;
         this.mail = mail;
         this.number = number;
@@ -137,5 +142,13 @@ public abstract class User {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

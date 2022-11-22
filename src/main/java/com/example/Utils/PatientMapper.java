@@ -5,6 +5,7 @@ import com.example.DTO.PatientDTOWithId;
 import com.example.Entity.Hospital;
 import com.example.Entity.Patient;
 import com.example.Repository.HospitalRepository;
+import com.example.enums.UserRole;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,7 +24,6 @@ public class PatientMapper {
                 patient.getSurname(),
                 patient.getLogin(),
                 patient.getPassword(),
-                patient.getToken(),
                 patient.getResidence(),
                 patient.getMail(),
                 patient.getNumber()
@@ -34,15 +34,15 @@ public class PatientMapper {
     public Patient toPatientFromDTO(PatientDTO patientDTO){
         Hospital hospital= hospitalRepository.findById(patientDTO.getHospitalId()).orElseThrow();
         return new Patient(
-                hospital,
-                patientDTO.getName(),
-                patientDTO.getSurname(),
+                patientDTO.getUserRole(),
                 patientDTO.getLogin(),
-                patientDTO.getToken(),
                 patientDTO.getPassword(),
-                patientDTO.getResidence(),
+                patientDTO.getName(),
                 patientDTO.getMail(),
-                patientDTO.getNumber()
+                patientDTO.getNumber(),
+                hospital,
+                patientDTO.getSurname(),
+                patientDTO.getResidence()
         );
     }
 
