@@ -2,13 +2,19 @@ package com.example.Controller;
 
 
 import com.example.DTO.PatientCardDTO;
+import com.example.DTO.UniversalDTO;
+import com.example.JSONView.Views;
 import com.example.Services.PatientCardService;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -51,6 +57,21 @@ public class RestPatientCardController {
     @GetMapping("/visitByDoctor")
     public ResponseEntity<Set<PatientCardDTO>> getVisitByDoctor(@RequestParam(value = "doctorId") Long dockorId){
         return  patientCardService.getPatientCardByDoctorId(dockorId);
+    }
+
+
+    @JsonView(Views.Doctorstat.class)
+    @GetMapping("/countVisitPerDoctor")
+    public ResponseEntity<Set<UniversalDTO>> countVisetPerDoctor(){
+        return patientCardService.countVisetPerDoctor();
+    }
+
+
+    @JsonView(Views.Diagnosis.class)
+    @GetMapping("/countDiagnosisPerPatient")
+    public  ResponseEntity<Set<UniversalDTO>> countDiagnosisPerPatient(){
+
+        return  patientCardService.countDiagnosisPerPatient();
     }
 
     @GetMapping("/visitByPatient")
