@@ -17,7 +17,8 @@ public interface ReceptionHourRepository extends CrudRepository<ReceptionHour, L
     List<ReceptionHour> findAll();
     List<ReceptionHour> findAll(Sort sort);
 
-    Optional<ReceptionHour> findByDateTime(LocalDateTime localDateTime);
+    Optional<ReceptionHour> findDistinctTopByDateTimeAndDoctor_IdAndStatus(LocalDateTime localDateTime, Long doctor_id, int status);
+    Optional<ReceptionHour> findDistinctTopByDateTimeAndDoctor_Id(LocalDateTime localDateTime, Long doctor_id);
 
     Optional<ReceptionHour> findById(Long id);
 
