@@ -33,6 +33,7 @@ public class PatientService {
 
     public ResponseEntity<PatientDTO> createPatient(PatientDTO patientDTO) {
         try {
+
             Patient patient = patientMapper.toPatientFromDTO(patientDTO);
             patientRepository.save(patient);
             Patient createdPatient = patientRepository.findById(patient.getId()).orElseThrow();

@@ -4,7 +4,10 @@ package com.example.Entity;
 import com.example.enums.UserRole;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -20,9 +23,13 @@ public abstract class User {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
+    @NotEmpty
+    @Min(value = 6,message = "login must be  at least 6 character ")
     @Column(name = "login")
     private String login;
 
+    @NotEmpty
+    @Size(min = 3, max = 20, message="password must be between 3 and 20 char")
     @Column(name = "password")
     private String password;
 

@@ -1,10 +1,21 @@
 package com.example.DTO;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class PatientDTO {
 
     private Long  hospitalId;
     private String name;
     private String surname;
+
+    private String login;
+
+    private String password;
+
+
+    private String token;
     private String residence;
     private String mail;
     private String number;
@@ -13,6 +24,18 @@ public class PatientDTO {
         this.hospitalId = hospitalId;
         this.name = name;
         this.surname = surname;
+        this.residence = residence;
+        this.mail = mail;
+        this.number = number;
+    }
+
+    public PatientDTO(Long hospitalId, String name, String surname, String login, String password,String token, String residence, String mail, String number) {
+        this.hospitalId = hospitalId;
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.token=token;
         this.residence = residence;
         this.mail = mail;
         this.number = number;
@@ -68,5 +91,29 @@ public class PatientDTO {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

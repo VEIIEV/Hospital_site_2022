@@ -46,7 +46,7 @@ public class Patient extends User {
         this.residence = residence;
     }
 
-    public Patient( String login, String password, String token, String name, String mail, String number,  Hospital hospital,  String surname, String residence) {
+    public Patient(Hospital hospital,  String name,String surname, String login, String password, String token, String residence, String mail, String number) {
         super(login, password, token, name, mail, number);
         this.hospital = hospital;
         this.surname = surname;
@@ -70,6 +70,8 @@ public class Patient extends User {
     public Patient() {
         super();
     }
+
+
 
 
     public String getSurname() {
