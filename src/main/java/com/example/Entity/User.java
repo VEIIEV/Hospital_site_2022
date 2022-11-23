@@ -90,6 +90,12 @@ public class User  implements UserDetails {
 
     }
 
+    public User(User user) {
+        this.userName=user.getUserName();
+        this.password=user.getPassword();
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -157,7 +163,7 @@ public class User  implements UserDetails {
     @Override
     public Set<GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("USER"));
+        authorities.add(new SimpleGrantedAuthority("ADMIN"));
         return authorities;
     }
 

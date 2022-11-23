@@ -22,10 +22,10 @@ public class RestRegistrationController {
     UserDetailsServiceImpl userDetailsService;
 
 
-    @PostMapping("/createNewUser")
+    @PostMapping("/signup")
     public ResponseEntity<User>  create(@RequestBody User user){
 
-        userDetailsService.saveUser(user);
+        if(userDetailsService.saveUser(user)==false) return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

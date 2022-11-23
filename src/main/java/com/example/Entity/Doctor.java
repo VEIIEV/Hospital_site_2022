@@ -5,9 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "doctor")
@@ -52,6 +56,11 @@ public class Doctor extends User {
         super.setUserRole(UserRole.DOCTOR);
     }
 
+    public Doctor(User user) {
+        super(user);
+        setUserRole(UserRole.DOCTOR);
+    }
+
     public List<ReceptionHour> getReceptionHours() {
         return receptionHours;
     }
@@ -82,8 +91,16 @@ public class Doctor extends User {
         return seniority;
     }
 
+
     public void setSeniority(String seniority) {
         this.seniority = seniority;
+    }
+
+    @Override
+    public Set<GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("DOCTOR"));
+        return authorities;
     }
 
 }

@@ -3,8 +3,11 @@ package com.example.Entity;
 import com.example.enums.UserRole;
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +34,15 @@ public class Patient extends User {
 
     @OneToMany(mappedBy = "patient", orphanRemoval = true)
     private Set<ReceptionHour> receptionHours = new LinkedHashSet<>();
+
+    public Patient(User user) {
+        super(user);
+        setUserRole(UserRole.PATIENT);
+    }
+
+    public Patient() {
+
+    }
 
     public Set<ReceptionHour> getReceptionHours() {
         return receptionHours;
@@ -75,9 +87,8 @@ public class Patient extends User {
         this.residence = residence;
     }
 
-    public Patient() {
-        super();
-    }
+
+
 
 
 
@@ -104,5 +115,12 @@ public class Patient extends User {
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
+    }
+
+    @Override
+    public Set<GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("PATIENT"));
+        return authorities;
     }
 }
