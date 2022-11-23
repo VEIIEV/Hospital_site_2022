@@ -2,18 +2,20 @@ package com.example.Entity;
 
 
 import com.example.enums.UserRole;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "User")
+@Table(name = "User_table")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq")
@@ -23,8 +25,8 @@ public abstract class User {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
@@ -44,9 +46,9 @@ public abstract class User {
 
 
 
-    public User(Long id, String login, String password, String token, String name, String mail, String number) {
+    public User(Long id, String userName, String password, String token, String name, String mail, String number) {
         this.id = id;
-        this.login = login;
+        this.userName = userName;
         this.password = password;
         this.token = token;
         this.name = name;
@@ -54,8 +56,8 @@ public abstract class User {
         this.number = number;
     }
 
-    public User(String login, String password, String token, String name, String mail, String number) {
-        this.login = login;
+    public User(String userName, String password, String token, String name, String mail, String number) {
+        this.userName = userName;
         this.password = password;
         this.token = token;
         this.name = name;
@@ -63,9 +65,9 @@ public abstract class User {
         this.number = number;
     }
 
-    public User(UserRole userRole, String login, String password, String name, String mail, String number) {
+    public User(UserRole userRole, String userName, String password, String name, String mail, String number) {
         this.userRole = userRole;
-        this.login = login;
+        this.userName = userName;
         this.password = password;
         this.name = name;
         this.mail = mail;
@@ -96,12 +98,12 @@ public abstract class User {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserName(String login) {
+        this.userName = login;
     }
 
     public String getPassword() {
@@ -150,5 +152,37 @@ public abstract class User {
 
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
+    }
+
+    @Override
+    public Set<GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("USER"));
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

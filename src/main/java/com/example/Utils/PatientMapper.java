@@ -5,7 +5,6 @@ import com.example.DTO.PatientDTOWithId;
 import com.example.Entity.Hospital;
 import com.example.Entity.Patient;
 import com.example.Repository.HospitalRepository;
-import com.example.enums.UserRole;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +21,7 @@ public class PatientMapper {
                 patient.getHospital().getId(),
                 patient.getName(),
                 patient.getSurname(),
-                patient.getLogin(),
+                patient.getUserName(),
                 patient.getPassword(),
                 patient.getResidence(),
                 patient.getMail(),
