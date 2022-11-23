@@ -1,4 +1,4 @@
-package com.example.Controller;
+package com.example.controller.rest;
 
 import com.example.DTO.HospitalDTO;
 import com.example.Entity.Diagnosis;

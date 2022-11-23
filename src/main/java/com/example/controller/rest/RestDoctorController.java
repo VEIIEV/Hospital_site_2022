@@ -1,4 +1,4 @@
-package com.example.Controller;
+package com.example.controller.rest;
 
 import com.example.DTO.DoctorDTO;
 import com.example.Entity.Doctor;

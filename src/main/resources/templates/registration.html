@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <body>
 <h1 th:text="#{label.form.title}">form</h1>
 <form action="/" th:object="${user}" method="POST" enctype="utf8">
   <div>
-    <label th:text="#{label.user.firstName}">first</label>
-    <input th:field="*{firstName}"/>
+    <label th:text="#{label.user.name}">first</label>
+    <input th:field="*{name}"/>
     <p th:each="error: ${#fields.errors('firstName')}"
        th:text="${error}">Validation error</p>
   </div>
   <div>
-    <label th:text="#{label.user.lastName}">last</label>
-    <input th:field="*{lastName}"/>
+    <label th:text="#{label.user.surname}">last</label>
+    <input th:field="*{surname}"/>
     <p th:each="error : ${#fields.errors('lastName')}"
        th:text="${error}">Validation error</p>
   </div>

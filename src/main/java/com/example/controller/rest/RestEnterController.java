@@ -1,4 +1,4 @@
-package com.example.Controller;
+package com.example.controller.rest;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
