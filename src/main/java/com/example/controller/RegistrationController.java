@@ -6,23 +6,20 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 @AllArgsConstructor
 @EnableAutoConfiguration
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("/")
 public class RegistrationController {
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
     @GetMapping("/form")
     public String showRegistrationForm(WebRequest webRequest, Model model){
