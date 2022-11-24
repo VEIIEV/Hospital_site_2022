@@ -45,7 +45,7 @@ public class Doctor extends User {
         this.specialisation = specialisation;
         this.surname = surname;
         this.seniority = seniority;
-        super.setUserRole(UserRole.DOCTOR);
+        super.setUserRole(UserRole.ROLE_DOCTOR);
     }
 
     public Doctor(String login, String password, String token, String name, String mail, String number, Specialisation specialisation,  String surname,   String seniority) {
@@ -53,12 +53,12 @@ public class Doctor extends User {
         this.specialisation = specialisation;
         this.surname = surname;
         this.seniority = seniority;
-        super.setUserRole(UserRole.DOCTOR);
+        super.setUserRole(UserRole.ROLE_DOCTOR);
     }
 
     public Doctor(User user) {
         super(user);
-        setUserRole(UserRole.DOCTOR);
+        setUserRole(UserRole.ROLE_DOCTOR);
     }
 
     public List<ReceptionHour> getReceptionHours() {

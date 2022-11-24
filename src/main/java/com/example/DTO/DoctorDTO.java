@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 public class DoctorDTO {
 
 
-    private final UserRole userRole= UserRole.DOCTOR;
+    private final UserRole userRole= UserRole.ROLE_DOCTOR;
     private Long specialisation_id;
     private String name;
     private String surname;

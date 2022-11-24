@@ -4,7 +4,6 @@ package com.example.controller.rest;
 import com.example.Entity.User;
 import com.example.Services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +28,6 @@ public class RestRegistrationController {
     @PostMapping("/signup")
     public ResponseEntity<User>  create(@Valid @RequestBody User user){
 
-        if(userDetailsService.saveUser(user)==false) return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(userDetailsService.saveUser(user), HttpStatus.OK);
     }
 }

@@ -1,13 +1,19 @@
 package com.example.conf;
 
 
+import com.example.Services.UserDetailsServiceImpl;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -16,6 +22,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 
 
 
+    UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -37,13 +44,19 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .authorizeRequests()
                 .antMatchers("/api/registration/*")
                 .permitAll()
+                .antMatchers("/hospital/create")
+                .permitAll()
+                .antMatchers("/api/**")
+                .hasAuthority("DOCTOR")
+            //    .hasRole("DOCTOR")
                 .anyRequest()
                 .authenticated()
                 .and()
-                            //.formLogin(withDefaults()) //предоставляет дефолтную форму для log in
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .httpBasic()
+//                            //.formLogin(withDefaults()) //предоставляет дефолтную форму для log in
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
                 .and()
                 .csrf().disable();
         return http.build();
@@ -53,17 +66,17 @@ public class SecurityConfig implements WebMvcConfigurer {
 
 
 
-//    @Bean
-//    @ConfigurationProperties("spring.datasource")
-//    public DataSourceProperties dataSourceProperties() {
-//        return  new DataSourceProperties();
-//    }
-//    @Bean
-//    @Primary
-//    public DataSource dataSource() {
-//        return
-//                dataSourceProperties().initializeDataSourceBuilder().build();
-//    }
+    @Bean
+    @ConfigurationProperties("spring.datasource")
+    public DataSourceProperties dataSourceProperties() {
+        return  new DataSourceProperties();
+    }
+    @Bean
+    @Primary
+    public DataSource dataSource() {
+        return
+                dataSourceProperties().initializeDataSourceBuilder().build();
+    }
 
 //    @Bean
 //    UserDetailsManager users(DataSource dataSource) {

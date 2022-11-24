@@ -37,7 +37,7 @@ public class Patient extends User {
 
     public Patient(User user) {
         super(user);
-        setUserRole(UserRole.PATIENT);
+        setUserRole(UserRole.ROLE_PATIENT);
     }
 
     public Patient() {

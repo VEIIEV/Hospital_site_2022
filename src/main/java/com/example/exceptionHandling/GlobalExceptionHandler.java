@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -26,4 +27,18 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(e.getMessage() + "\n" + stringBuilder.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    protected  ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException e, WebRequest webRequest){
+        Iterator<String> response = webRequest.getParameterNames();
+        StringBuilder stringBuilder = new StringBuilder();
+        System.out.println(e.getStackTrace());
+        while (response.hasNext()) {
+            String n=response.next();
+            stringBuilder.append( n + ": " + webRequest.getParameter(n) + "\n");
+        }
+
+        return new ResponseEntity<>(e.getMessage() + "\n" + stringBuilder.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
