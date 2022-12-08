@@ -1,13 +1,10 @@
 package com.example.Entity;
 
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.lang.Nullable;
-import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.util.List;
@@ -111,4 +108,16 @@ public class Hospital {
     }
 
 
+    @Override
+    public String toString() {
+        return "Hospital{" +
+                "id=" + id +
+                ", patients=" + patients +
+                ", specialisations=" + specialisations +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", mail='" + mail + '\'' +
+                ", number='" + number + '\'' +
+                '}';
+    }
 }

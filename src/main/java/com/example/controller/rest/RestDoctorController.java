@@ -6,6 +6,7 @@ import com.example.Services.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,6 +53,10 @@ public class RestDoctorController {
      * @param title field's name
      * @return
      */
+
+
+    //аннотация security которая определяет какие пользователи имеют  право вызывать этот контроллер
+    @PreAuthorize("hasAuthority('DOCTOR')")
     @GetMapping("/allDoctor")
     public ResponseEntity<List<Doctor>> getAllDoctors(
             @RequestParam(value = "sortMethod", required = false) String sortMethod,

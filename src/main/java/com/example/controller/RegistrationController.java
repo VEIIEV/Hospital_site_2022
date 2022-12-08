@@ -21,6 +21,8 @@ public class RegistrationController {
         return "login";
     }
 
+
+
     @GetMapping("/form")
     public String showRegistrationForm(WebRequest webRequest, Model model){
         PatientDTO patientDTO = new PatientDTO();

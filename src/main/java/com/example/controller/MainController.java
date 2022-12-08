@@ -1,43 +1,36 @@
 package com.example.controller;
 
 
-import com.example.Services.CleanDBService;
+import com.example.Entity.Hospital;
+import com.example.Repository.HospitalRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-@RestController
-@EnableAutoConfiguration
-@RequestMapping("/")
+import java.util.NoSuchElementException;
+
+
 @AllArgsConstructor
+@EnableAutoConfiguration
+@Controller
+@RequestMapping("/")
 public class MainController {
 
-    CleanDBService cleanDBService;
+
+    @Autowired
+    HospitalRepository hospitalRepository;
+
 
     @GetMapping("/hello")
-    public String helloSite() {
+    public String hello(Model model){
 
-        return "Requested data is null";
+        Hospital hospital = hospitalRepository.findById(2L).orElseThrow(NoSuchElementException::new);
+
+        model.addAttribute("hospital", hospital);
+        return "helloPage";
     }
-
-    @GetMapping("/deleteAllDATA")
-    public String deleteAllData() {
-        cleanDBService.cleanDB();
-        return "deal's done";
-    }
-
-    @GetMapping("/throwException")
-    public String throwException() {
-        try {throw  new Exception();
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "congradulation, that you long waited exception");
-        }
-
-    }
-
-
 }
