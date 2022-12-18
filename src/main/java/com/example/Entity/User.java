@@ -2,6 +2,8 @@ package com.example.Entity;
 
 
 import com.example.enums.UserRole;
+import lombok.Builder;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "User_table")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User  implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq")
@@ -35,8 +37,9 @@ public class User  implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "token")
-    private String token;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private VerificationToken token;
 
     @Column(name = "name")
     private String name;
@@ -54,6 +57,10 @@ public class User  implements UserDetails {
     @Type(type = "org.hibernate.type.ImageType")
     private byte[] image;
 
+    @Builder.Default
+    @ColumnDefault("true")
+    @Column(name = "accountVerified")
+    private boolean accountVerified=false;
 
 
 
@@ -61,7 +68,7 @@ public class User  implements UserDetails {
         this.id = id;
         this.userName = userName;
         this.password = password;
-        this.token = token;
+//        this.token = token;
         this.name = name;
         this.mail = mail;
         this.number = number;
@@ -70,7 +77,7 @@ public class User  implements UserDetails {
     public User(String userName, String password, String token, String name, String mail, String number) {
         this.userName = userName;
         this.password = password;
-        this.token = token;
+//        this.token = token;
         this.name = name;
         this.mail = mail;
         this.number = number;
@@ -102,9 +109,9 @@ public class User  implements UserDetails {
     }
 
     public User(User user) {
-        this.userName=user.getUserName();
-        this.password=user.getPassword();
-        this.mail=user.getMail();
+        this.userName = user.getUserName();
+        this.password = user.getPassword();
+        this.mail = user.getMail();
     }
 
 
@@ -132,11 +139,11 @@ public class User  implements UserDetails {
         this.password = password;
     }
 
-    public String getToken() {
+    public VerificationToken getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(VerificationToken token) {
         this.token = token;
     }
 
@@ -192,6 +199,14 @@ public class User  implements UserDetails {
         return userName;
     }
 
+    public boolean isAccountVerified() {
+        return accountVerified;
+    }
+
+    public void setAccountVerified(boolean accountVerified) {
+        this.accountVerified = accountVerified;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -209,6 +224,9 @@ public class User  implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        if(isAccountVerified()) {
+            return true;
+        }
+        else return false;
     }
 }

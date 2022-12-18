@@ -6,6 +6,7 @@ import com.example.Services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/")
 public class RegistrationController {
+
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
+
+
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
@@ -48,8 +54,12 @@ public class RegistrationController {
         }
 
         userDetailsService.saveUser(userForm);
-        return "redirect:/hello";
+        return "redirect:/mailInfoPage";
     }
 
+    @GetMapping("/mailInfoPage")
+    public String showMailVerificationNotion() {
+        return "mailInfoPage";
+    }
 
 }
