@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,7 +20,6 @@ import java.util.NoSuchElementException;
 @Slf4j
 @Service
 public class PatientService {
-
 
 
     private final PatientRepository patientRepository;
@@ -86,15 +86,24 @@ public class PatientService {
         List<Patient> patients;
         //if(title.isEmpty()){ title="id";}
 
-            patients = switch (sortMethod) {
-                case "asc" -> patientRepository.findAll(Sort.by(title).ascending());
-                case "desc" -> patientRepository.findAll(Sort.by(title).descending());
-                default -> patientRepository.findAll();
-            };
+        patients = switch (sortMethod) {
+            case "asc" -> patientRepository.findAll(Sort.by(title).ascending());
+            case "desc" -> patientRepository.findAll(Sort.by(title).descending());
+            default -> patientRepository.findAll();
+        };
 
         List<PatientDTO> patientDTOS = patients.stream().map(patientMapper::toDTOFromPatient).toList();
         return new ResponseEntity<>(patientDTOS, HttpStatus.OK);
     }
 
 
+    public void updatePatientData(Patient patient, Principal principal) {
+
+        Patient patient1 = patientRepository.findPatientsByUsername(principal.getName()).get();
+        if (patient.getName() != null) patient1.setName(patient.getName());
+        if (patient.getSurname()!=null) patient1.setSurname(patient.getSurname());
+        if (patient.getResidence()!=null) patient1.setResidence(patient.getResidence());
+        if (patient.getNumber()!=null) patient1.setNumber(patient.getNumber());
+        patientRepository.save(patient1);
+    }
 }

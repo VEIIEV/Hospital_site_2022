@@ -1,10 +1,12 @@
 package com.example.Repository;
 
 import com.example.Entity.Diagnosis;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Set;
 
 public interface DiagnosisRepository extends CrudRepository<Diagnosis, Long> {
@@ -22,4 +24,8 @@ public interface DiagnosisRepository extends CrudRepository<Diagnosis, Long> {
 
     @Query("select d from Diagnosis d where d.name in ?1")
     Set<Diagnosis> findAllByNameIn(Set<String> names);
+
+    List<Diagnosis> findAll();
+
+    List<Diagnosis> findAll(Sort sort);
 }

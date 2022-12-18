@@ -27,5 +27,6 @@ public interface DoctorRepository extends UserRepository<Doctor> {
     Optional<Doctor> findById(Long id);
 
 
-
+    @Query("select d from Doctor d where d.userName = ?1")
+    Optional<Doctor> findDoctorsByUsername(String name);
 }

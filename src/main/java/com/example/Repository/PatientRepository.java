@@ -20,6 +20,9 @@ public interface PatientRepository extends UserRepository<Patient> {
     void updateHospital(@Param("id") Long id);
     List<Patient>  findAll();
 
+
+    @Query("select p from Patient p where p.userName = ?1")
+    Optional<Patient> findPatientsByUsername(String userName);
     @Query("select p from Patient p")
     List<Patient>  findAll(Sort sort);
 

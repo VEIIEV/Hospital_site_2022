@@ -41,7 +41,12 @@ public class RegistrationController {
     private MessageSource messageSource;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@ModelAttribute("userForm")  User userForm, BindingResult bindingResult, Model model) {
+        if(userDetailsService.loadUserByUsername(userForm.getUserName())!=null) {
+            if (!userDetailsService.loadUserByUsername(userForm.getUserName()).isEnabled()) {
+                model.addAttribute("isEnabledError", "you must verify your account");
+            }
+        }
         return "login";
     }
 
@@ -61,6 +66,7 @@ public class RegistrationController {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "registration";
         }
+
 
         userDetailsService.saveUser(userForm);
         return "redirect:/mailInfoPage";

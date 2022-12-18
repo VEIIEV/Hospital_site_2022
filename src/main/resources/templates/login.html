@@ -4,7 +4,7 @@
     <title>Please Log In</title>
 </head>
 <body>
-<div th:align="center">
+<div th:align="center" >
     <h1>Please Log In</h1>
     <div th:if="${param.error}">
         Invalid username and password.
@@ -14,11 +14,15 @@
     </div>
     <div th:text="${tokenError}">
         You have been logged out.
-    </div><div th:text="${verifiedAccountMsg}">
+    </div>
+    <div >
+        <p th:text="${isEnabledError}"></p>
+    </div>
+    <div th:text="${verifiedAccountMsg}">
         verified complete.
     </div>
 
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/login}" method="post" th:object="${userForm}">
         <div>
             <input type="text" name="username" placeholder="Username"/>
         </div>

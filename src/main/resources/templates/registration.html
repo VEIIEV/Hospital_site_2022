@@ -16,15 +16,15 @@
     <form th:action="@{/registration}" th:object="${userForm}" method="post">
         <div>
             <span th:text="${usernameError}"></span>
-            <input type="text" name="userName" placeholder="Username"/>
+            <input type="text" name="userName" placeholder="Username" required/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
         </div>
         <div>
-            <input type="password" name="password" placeholder="Password"/>
+            <input type="password" name="password" placeholder="Password" required/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
         <div>
-            <input type="text" name="mail" placeholder="mail"/>
+            <input type="text" name="mail" placeholder="mail" required/>
             <div class="alert alert-warning" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></div>
         </div>
         <div>

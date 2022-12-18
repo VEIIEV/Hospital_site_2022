@@ -2,7 +2,6 @@ package com.example.Entity;
 
 import com.example.enums.UserRole;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +15,6 @@ import java.util.Set;
 @Entity
 @Table(name = "doctor")
 @AllArgsConstructor
-@NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "doctor_id")
 @Polymorphism(type = PolymorphismType.EXPLICIT)
 public class Doctor extends User {
@@ -38,6 +36,8 @@ public class Doctor extends User {
 
 
 
+    public Doctor() {
+    }
 
 
     public Doctor(Specialisation specialisation, String name, String surname, String mail, String number, String seniority) {
@@ -60,6 +60,7 @@ public class Doctor extends User {
         super(user);
         setUserRole(UserRole.ROLE_DOCTOR);
     }
+
 
     public List<ReceptionHour> getReceptionHours() {
         return receptionHours;

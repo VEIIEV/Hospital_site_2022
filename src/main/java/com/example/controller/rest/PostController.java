@@ -8,12 +8,15 @@ import com.example.Services.SpecialisationService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @EnableAutoConfiguration
-@RequestMapping("/")
+@RequestMapping("/api")
 @AllArgsConstructor
 public class PostController {
 
@@ -28,7 +31,7 @@ public class PostController {
         return hospitalService.createHospital(hospitalDTO);
     }
 
-    @PostMapping("/api/disease")
+    @PostMapping("/disease")
     public ResponseEntity<Diagnosis> createDisease(@RequestBody Diagnosis diagnosis){
         return diagnosisService.createDisease(diagnosis);
     }

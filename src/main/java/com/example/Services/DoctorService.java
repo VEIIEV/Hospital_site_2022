@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -82,5 +83,15 @@ public class DoctorService {
         Set<String> doctors= doctorRepository.findBySpecialisation_Name(specialisation);
         doctors=doctors.stream().map(n->specialisation+": "+n.replace(",",", " )).collect(Collectors.toSet());
         return new ResponseEntity<>(doctors, HttpStatus.OK);
+    }
+
+    public void updateDoctor(Doctor doctor, Principal principal) {
+
+        Doctor doctor1 = doctorRepository.findDoctorsByUsername(principal.getName()).get();
+        if (doctor.getName() != null) doctor1.setName(doctor.getName());
+        if (doctor.getSurname()!=null) doctor1.setSurname(doctor.getSurname());
+        if (doctor.getSeniority()!=null) doctor1.setSeniority(doctor.getSeniority());
+        if (doctor.getNumber()!=null) doctor1.setNumber(doctor.getNumber());
+        doctorRepository.save(doctor1);
     }
 }
