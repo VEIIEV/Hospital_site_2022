@@ -99,7 +99,7 @@ public class Doctor extends User {
     @Override
     public Set<GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("DOCTOR"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
         return authorities;
     }
 

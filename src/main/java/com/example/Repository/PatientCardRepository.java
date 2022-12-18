@@ -5,12 +5,10 @@ import com.example.Entity.PatientCard;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,6 +24,8 @@ public interface PatientCardRepository extends CrudRepository<PatientCard, Long>
 
     @Modifying
     void deleteAllBy();
+
+
 
     List<PatientCard> findAll(Sort sort);
 

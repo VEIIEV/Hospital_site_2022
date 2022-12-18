@@ -2,12 +2,14 @@ package com.example.Entity;
 
 
 import com.example.enums.UserRole;
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,9 +27,11 @@ public class User  implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
+    @NotEmpty(message = "login Field can't be empty!")
     @Column(name = "user_name")
     private String userName;
 
+    @NotEmpty(message = "password Field can't be empty!")
     @Column(name = "password")
     private String password;
 
@@ -37,11 +41,18 @@ public class User  implements UserDetails {
     @Column(name = "name")
     private String name;
 
+    @NotEmpty()
+    @Email(message = "its not a mail")
     @Column(name = "mail")
     private String mail;
 
     @Column(name = "number")
     private String number;
+
+
+    @Lob
+    @Type(type = "org.hibernate.type.ImageType")
+    private byte[] image;
 
 
 
@@ -93,6 +104,7 @@ public class User  implements UserDetails {
     public User(User user) {
         this.userName=user.getUserName();
         this.password=user.getPassword();
+        this.mail=user.getMail();
     }
 
 
@@ -150,6 +162,14 @@ public class User  implements UserDetails {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public UserRole getUserRole() {

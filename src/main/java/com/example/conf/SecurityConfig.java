@@ -47,9 +47,9 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-//                .csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/registration/*")
+                .antMatchers("/api/registration/*", "/hello", "/form", "/registration", "/css/**","/MyCss.css", "/Navcss.css", "/js/**", "/images/**", "/static/**")
                 .permitAll()
                 .antMatchers("/hospital/create")
                 .permitAll()
@@ -73,7 +73,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 // если хочется использовать гет, необходимо использоват ьстроку выше
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/hello");
         return http.build();
     }
 

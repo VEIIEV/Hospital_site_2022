@@ -1,39 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+</head>
 <body>
-<h1 th:text="#{label.form.title}">form</h1>
-<form action="/" th:object="${user}" method="POST" enctype="utf8">
-  <div>
-    <label th:text="#{label.user.name}">first</label>
-    <input th:field="*{name}"/>
-    <p th:each="error: ${#fields.errors('firstName')}"
-       th:text="${error}">Validation error</p>
-  </div>
-  <div>
-    <label th:text="#{label.user.surname}">last</label>
-    <input th:field="*{surname}"/>
-    <p th:each="error : ${#fields.errors('lastName')}"
-       th:text="${error}">Validation error</p>
-  </div>
-  <div>
-    <label th:text="#{label.user.email}">email</label>
-    <input type="email" th:field="*{email}"/>
-    <p th:each="error : ${#fields.errors('email')}"
-       th:text="${error}">Validation error</p>
-  </div>
-  <div>
-    <label th:text="#{label.user.password}">password</label>
-    <input type="password" th:field="*{password}"/>
-    <p th:each="error : ${#fields.errors('password')}"
-       th:text="${error}">Validation error</p>
-  </div>
-  <div>
-    <label th:text="#{label.user.confirmPass}">confirm</label>
-    <input type="password" th:field="*{matchingPassword}"/>
-  </div>
-  <button type="submit" th:text="#{label.form.submit}">submit</button>
-</form>
+<h1>form</h1>
 
-<a th:href="@{/login.html}" th:text="#{label.form.loginLink}">login</a>
+<div th:align="center">
+    <h1>Please Sign Up</h1>
+
+    <form th:action="@{/registration}" th:object="${userForm}" method="post">
+        <div>
+            <span th:text="${usernameError}"></span>
+            <input type="text" name="userName" placeholder="Username"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Password"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <div>
+            <input type="text" name="mail" placeholder="mail"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></div>
+        </div>
+        <div>
+            <input id="patientRadio" type="radio" name="userRole" value="ROLE_PATIENT" checked="checked" />
+            <label for="patientRadio">patient</label>
+            <input id="doctorRadio" type="radio" name="userRole" value="ROLE_DOCTOR"  />
+            <label for="doctorRadio">doctor</label>
+        </div>
+        <div>
+        </div>
+        <input type="submit" value="sign up"/>
+    </form>
+</div>
+
+<a th:href="@{/login}">login</a>
 </body>
 </html>
+

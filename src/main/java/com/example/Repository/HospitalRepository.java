@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface HospitalRepository extends CrudRepository<Hospital, Long> {
 
-    public Optional<Hospital> findById(Long id);
+    Optional<Hospital> findById(Long id);
 
     @Modifying
     void deleteAllBy();

@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
 </head>
 <body>
+
+<nav>
+    <ul>
+        <li><a class="active" th:href="@{/hello}">home</a></li>
+        <li><a th:href="@{/specialisation}">specialisations</a></li>
+        <li><a th:href="@{/diagnosis}">diagnosis list</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li><a th:href="@{/patientCard}">your card</a></li>
+        </div>
+        <li><a th:href="@{/faq}">FAQ</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li style="float:right"><a th:href="@{/logout}">LOGOUT </a></li>
+        </div>
+        <div sec:authorize="isAuthenticated()==false">
+            <li style="float:right"><a th:href="@{/login}">LOGIN</a></li>
+        </div>
+    </ul>
+</nav>
+
+Authenticated user's firstName:
+<div sec:authentication="principal.name"></div>
+Authenticated user's UserName:
+<div sec:authentication="principal.userName"></div>
+Authenticated user's mail:
+<div sec:authentication="principal.mail"></div>
+Authenticated user's id:
+<div sec:authentication="principal.id"></div>
+Authenticated user authorities:
+<div sec:authentication="principal.authorities"></div>
+<div sec:authentication="principal.image"></div>
+
+
+<img src="images/single_1_thumb.jpg" alt="хуйня какаято" th:data-image="${user.image} "/>
+
+<img th:attr="src=${user.image}"/>
+<!-- работает одинакого, одинакого не работает в опере
+<img th:src="*{'data:image/png;base64,'+user.image}"/>
+<img th:src="${'data:image/jpeg;charset=utf-8;base64,' + user.image}" alt="">
+<img th:src="${'data:image/jpeg;charset=utf-8;base64,' + user.getImage()}" alt="">
+
+-->
+<div th:style="'background-image:url('+ ${user.image}+');'"></div>
+
+
+<div class="col-md-8 mx-auto">
+    <h2>Upload Image Example</h2>
+    <form method="post" th:action="@{/patientCard/updateImg}" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="image" accept="image/*" class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload image</button>
+    </form>
+</div>
+
 
 </body>
 </html>
