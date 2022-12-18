@@ -29,7 +29,7 @@ public class VerificationTokenService {
         VerificationToken secureToken = new VerificationToken();
         secureToken.setToken(tokenValue);
         secureToken.setExpireAt(LocalDateTime.now().plusSeconds(getTokenValidityInSeconds()));
-        this.saveSecureToken(secureToken);
+        //this.saveSecureToken(secureToken);
         return secureToken;
     }
 

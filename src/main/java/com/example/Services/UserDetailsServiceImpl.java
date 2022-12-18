@@ -3,12 +3,12 @@ package com.example.Services;
 import com.example.Entity.Doctor;
 import com.example.Entity.Patient;
 import com.example.Entity.User;
-import com.example.Repository.DoctorRepository;
-import com.example.Repository.HospitalRepository;
-import com.example.Repository.PatientRepository;
-import com.example.Repository.UserRepository;
+import com.example.Entity.VerificationToken;
+import com.example.Repository.*;
 import com.example.enums.UserRole;
+import com.example.mail.AccountVerificationEmailContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,10 +16,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Base64;
+import java.util.Objects;
 
 
 @Service
@@ -38,7 +41,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     HospitalRepository hospitalRepository;
 
     @Autowired
+    VerificationTokenRepository verificationTokenRepository;
+
+    @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    VerificationTokenService verificationTokenService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Value("${site.base.url.https}")
+    private String baseURL;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -63,12 +78,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 Patient patientFromDB =patientRepository.save(patient);
                 patientRepository.updateHospital(patientFromDB.getId());
                 System.out.println("check p");
+                sendRegistrationConfirmationEmail((User) patientFromDB);
                 return patient;
             }
             if (user.getUserRole() == UserRole.ROLE_DOCTOR) {
                 Doctor doctor = new Doctor(user);
-                doctorRepository.save(doctor);
+                Doctor doctorFromDB=doctorRepository.save(doctor);
                 System.out.println("check d ");
+                sendRegistrationConfirmationEmail( (User) doctorFromDB);
                 return doctor;
             }
         }
@@ -76,6 +93,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public void sendRegistrationConfirmationEmail(User user) {
+        VerificationToken secureToken= verificationTokenService.createSecureToken();
+        secureToken.setUser(user);
+        verificationTokenRepository.save(secureToken);
+        AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
+        emailContext.init(user);
+        emailContext.setToken(secureToken.getToken());
+        emailContext.buildVerificationUrl(baseURL, secureToken.getToken());
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Transactional
@@ -88,5 +121,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         System.out.println(user.getImage().length);
         userRepository.save(user);
 
+    }
+
+
+    public boolean verifyUser(String token) throws Exception {
+        VerificationToken verificationToken = verificationTokenService.findByToken(token);
+        if (Objects.isNull(verificationToken) || !StringUtils.equals(token, verificationToken.getToken()) || verificationToken.isExpired()) {
+            throw new Exception("Token is not valid");
+        }
+        User user = (User) userRepository.findById(verificationToken.getUser().getId()).get();
+        if (Objects.isNull(user)) {
+            return false;
+        }
+        user.setAccountVerified(true);
+        userRepository.save(user); // let’s same user details
+
+        // we don’t need invalid password now
+        verificationTokenService.removeToken(verificationToken);
+        return true;
     }
 }

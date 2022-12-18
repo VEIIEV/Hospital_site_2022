@@ -17,4 +17,6 @@ public interface VerificationTokenRepository extends CrudRepository<Verification
     @Modifying
     @Query("delete from VerificationToken v where v.token = ?1")
     void removeByToken(String token);
+
+
 }

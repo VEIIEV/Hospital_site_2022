@@ -9,9 +9,10 @@ public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "verification_token_gen")
+    @SequenceGenerator(name = "verification_token_gen", sequenceName = "verification_token_seq")
+    @Column(name = "id", nullable = false)
     private Long id;
-
 
     @Column(name ="token" ,updatable = false)
     private String token;
@@ -26,6 +27,9 @@ public class VerificationToken {
     @Column(updatable = false)
     @Basic(optional = false)
     private LocalDateTime expireAt;
+
+
+
 
 //    private Date calculateExpiryDate(int expiryTimeInMinutes) {
 //        Calendar cal = Calendar.getInstance();

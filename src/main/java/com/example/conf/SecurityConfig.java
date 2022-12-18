@@ -49,7 +49,7 @@ public class SecurityConfig implements WebMvcConfigurer {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/registration/*", "/hello", "/form", "/registration", "/css/**","/MyCss.css", "/Navcss.css", "/js/**", "/images/**", "/static/**")
+                .antMatchers("/api/**", "/hello", "/form","/verify", "/mailInfoPage","/registration", "/css/**","/MyCss.css", "/Navcss.css", "/js/**", "/images/**", "/static/**")
                 .permitAll()
                 .antMatchers("/hospital/create")
                 .permitAll()

@@ -1,8 +1,6 @@
 package com.example.Entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -11,8 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "hospital")
-@AllArgsConstructor
-@NoArgsConstructor
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hospital_gen")
@@ -43,6 +39,8 @@ public class Hospital {
     @Column(name = "number")
     private String number;
 
+    public Hospital() {
+    }
 
     public Hospital(String name, String address, String mail, String number) {
         this.name = name;

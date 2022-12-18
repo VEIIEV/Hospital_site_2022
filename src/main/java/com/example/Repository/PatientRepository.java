@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface PatientRepository extends UserRepository<Patient> {
     @Transactional
     @Modifying
-    @Query(value = "update hospital.patient p set hospital_id = 1 where patient_id=:id", nativeQuery = true)
+    @Query(value = "update hospital.patient p set hospital_id = 2 where patient_id=:id", nativeQuery = true)
     void updateHospital(@Param("id") Long id);
     List<Patient>  findAll();
 
