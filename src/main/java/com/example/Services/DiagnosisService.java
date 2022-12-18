@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class DiagnosisService {
@@ -26,6 +27,10 @@ public class DiagnosisService {
         Diagnosis createdPatientCard = diagnosisRepository.findById(diagnosis.getId()).get();
         return new ResponseEntity<>(createdPatientCard, HttpStatus.OK);
 
+    }
+
+    public Diagnosis getDiagnosisById(Long id) throws NoSuchElementException {
+        return  diagnosisRepository.findById(id).orElseThrow();
     }
 
 

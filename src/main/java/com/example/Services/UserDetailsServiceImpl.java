@@ -75,8 +75,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             if (user.getUserRole() == UserRole.ROLE_PATIENT) {
                 Patient patient = new Patient(user);
+                //закрепляем пользователя за больницей №1
+                patient.setHospital(hospitalRepository.findById(1L).get());
                 Patient patientFromDB =patientRepository.save(patient);
-                patientRepository.updateHospital(patientFromDB.getId());
+                //вручнаю задать больницу №2
+//                patientRepository.updateHospital(patientFromDB.getId());
                 System.out.println("check p");
                 sendRegistrationConfirmationEmail((User) patientFromDB);
                 return patient;

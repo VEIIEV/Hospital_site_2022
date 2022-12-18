@@ -34,7 +34,7 @@
 </nav>
 
 <div th:unless="${#lists.isEmpty(diagnoses)}">
-    <h1>th:each</h1>
+    <h1>List of Diagnosis</h1>
     <table border="1">
         <tr>
             <th>name</th>
@@ -42,9 +42,9 @@
         </tr>
         <tr th:each="diagnosis : ${diagnoses}">
 
-            <td th:utext="${diagnosis.name}">name</td>
+            <td><a th:href="@{/diagnosis/{id}(id=${diagnosis.id})}"  th:utext="${diagnosis.name}" target="_blank"> </a></td>
             <td th:utext="${diagnosis.discription}">discription</td>
-        </tr>
+        </tr>{
     </table>
 
 </div>
