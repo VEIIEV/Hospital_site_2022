@@ -1,7 +1,6 @@
 package com.example.Services;
 
 import com.example.Entity.Doctor;
-import com.example.Entity.Hospital;
 import com.example.Entity.Patient;
 import com.example.Entity.User;
 import com.example.Repository.DoctorRepository;
@@ -56,13 +55,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         try {
             //почему с 1, получаю ошибку  No enum constant com.example.enums.UserRole.PATIENT
-            Hospital hospital=hospitalRepository.findById(2L).get();
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             if (user.getUserRole() == UserRole.ROLE_PATIENT) {
                 Patient patient = new Patient(user);
-                System.out.println(hospital);
-                patient.setHospital(hospital);
-                patientRepository.save(patient);
+                Patient patientFromDB =patientRepository.save(patient);
+                patientRepository.updateHospital(patientFromDB.getId());
                 System.out.println("check p");
                 return patient;
             }
