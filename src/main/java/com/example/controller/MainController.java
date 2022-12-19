@@ -76,8 +76,8 @@ public class MainController {
         return "FAQ";
     }
 
-    @GetMapping("/patientCard")
-    public String patientCard(Model model, Principal principal) {
+    @GetMapping("/account")
+    public String account(Model model, Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
       boolean check= user.getUserRole().name().equals("ROLE_PATIENT");
@@ -88,10 +88,10 @@ public class MainController {
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
         }
         model.addAttribute("user", user);
-        return "patientCard";
+        return "account";
     }
 
-    @PostMapping("/patientCard/updateImg")
+    @PostMapping("/account/updateImg")
     String uploadImage(@RequestParam("image") MultipartFile multipartImage, Principal principal, Model model) throws Exception {
 
         userDetailsService.updateImg(multipartImage, principal);
@@ -104,11 +104,11 @@ public class MainController {
         }
         model.addAttribute("user", user);
         System.out.println(user.getImage().length);
-        return "redirect:/patientCard";
+        return "redirect:/account";
     }
 
-    @PostMapping("/patientCard/updateData/patient")
-    String uploadImage(@ModelAttribute("patient") Patient patient, Principal principal, Model model) throws Exception {
+    @PostMapping("/account/updateData/patient")
+    String updateDataPatient(@ModelAttribute("patient") Patient patient, Principal principal, Model model) throws Exception {
 
         patientservice.updatePatientData(patient, principal);
         User user = userRepository.findByUsername(principal.getName());
@@ -119,12 +119,12 @@ public class MainController {
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
         }
         model.addAttribute("user", user);
-        return "redirect:/patientCard";
+        return "redirect:/account";
     }
 
 
-    @PostMapping("/patientCard/updateData/doctor")
-    String uploadImage(@ModelAttribute("doctor") Doctor doctor, Principal principal, Model model) throws Exception {
+    @PostMapping("/account/updateData/doctor")
+    String updateDataDoctor(@ModelAttribute("doctor") Doctor doctor, Principal principal, Model model) throws Exception {
 
         doctorService.updateDoctor(doctor, principal);
         User user = userRepository.findByUsername(principal.getName());
@@ -135,7 +135,7 @@ public class MainController {
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
         }
         model.addAttribute("user", user);
-        return "redirect:/patientCard";
+        return "redirect:/account";
     }
 
 //    @GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)

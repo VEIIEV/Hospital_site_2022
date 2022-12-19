@@ -35,7 +35,10 @@ public interface ReceptionHourRepository extends CrudRepository<ReceptionHour, L
     @Query(value = " select * from hospital.reception_hour where  (status=3 or  status = 4 ) and reception_hour.date_time < current_date;", nativeQuery = true)
     List<ReceptionHour> findOutdated();
 
+    @Query(" select r from ReceptionHour r where  r.status=3 and r.doctor=?1")
+    List<ReceptionHour> findAvailable(Doctor doctor);
 
-
+    @Query("select r from ReceptionHour r where r.status=4 and r.doctor=?1")
+    List<ReceptionHour> findAppointed(Doctor doctor);
 
 }

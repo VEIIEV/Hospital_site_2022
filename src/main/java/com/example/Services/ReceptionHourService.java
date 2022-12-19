@@ -1,10 +1,15 @@
 package com.example.Services;
 
 import com.example.DTO.ReceptionHourDTO;
+import com.example.Entity.Patient;
+import com.example.Repository.PatientRepository;
 import com.example.Repository.ReceptionHourRepository;
+import com.example.Repository.SpecialisationRepository;
+import com.example.Repository.UserRepository;
 import com.example.Utils.ReceptionHourMapper;
 import com.example.Entity.Doctor;
 import com.example.Entity.ReceptionHour;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,18 +20,25 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ReceptionHourService {
 
+    @Autowired
+    PatientRepository patientRepository;
+
     private final ReceptionHourRepository receptionHourRepository;
     private final DoctorService doctorService;
     private final ReceptionHourMapper receptionHourMapper;
+    private final SpecialisationRepository specialisationRepository;
 
-    public ReceptionHourService(ReceptionHourRepository receptionHourRepository, DoctorService doctorService, ReceptionHourMapper receptionHourMapper) {
+    public ReceptionHourService(ReceptionHourRepository receptionHourRepository, DoctorService doctorService, ReceptionHourMapper receptionHourMapper,
+                                SpecialisationRepository specialisationRepository) {
         this.receptionHourRepository = receptionHourRepository;
         this.doctorService = doctorService;
         this.receptionHourMapper = receptionHourMapper;
+        this.specialisationRepository = specialisationRepository;
     }
 
 
@@ -153,6 +165,7 @@ public class ReceptionHourService {
     }
 
     //раз в 10 секунд находит устаревшие часы приёмы и меняет их статус
+    //сверяется только по датам, есть такая проблемка
     @Scheduled(cron = "*/10 * * * * *")
     public void Outdate() {
         List<ReceptionHour> receptionHours = receptionHourRepository.findOutdated();
@@ -162,12 +175,31 @@ public class ReceptionHourService {
         });
     }
 
+
+    //site
+
     public List<ReceptionHour> getAllReceptionHourNoApi(Doctor doctor) {
         return receptionHourRepository.findAllByDoctor(doctor);
     }
 
-    //site
+    public List<ReceptionHour> getAvailableReceptionHourNoApi(Doctor doctor) {
+        return  receptionHourRepository.findAvailable(doctor);
+    }
 
+    public boolean makeAppointmentNoApi(Long id, String name) {
+        try {
+            Patient patient = (Patient) patientRepository.findByUsername(name);
+            ReceptionHour receptionHour = receptionHourRepository.findById(id).get();
+            receptionHour.setStatus(4);
+            receptionHour.setPatient(patient);
+            receptionHourRepository.save(receptionHour);
+            return true;
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 
 
 

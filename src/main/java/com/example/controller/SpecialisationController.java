@@ -4,6 +4,7 @@ import com.example.Entity.Doctor;
 import com.example.Entity.ReceptionHour;
 import com.example.Entity.Specialisation;
 import com.example.Repository.DoctorRepository;
+import com.example.Repository.ReceptionHourRepository;
 import com.example.Repository.SpecialisationRepository;
 import com.example.Services.DoctorService;
 import com.example.Services.ReceptionHourService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -35,6 +37,7 @@ public class SpecialisationController {
     ReceptionHourService receptionHourService;
     private final DoctorRepository doctorRepository;
     private final SpecialisationRepository specialisationRepository;
+    private final ReceptionHourRepository receptionHourRepository;
 
     @GetMapping("/")
     public String getSpecialisation(Model model){
@@ -59,7 +62,7 @@ public class SpecialisationController {
     public String getSortedSpecialisation(@PathVariable("title") String title, Model model){
         List<Specialisation> specialisations= specialisationService.getAllDiagnosisNoApi("asc", title);
         model.addAttribute("specialisations", specialisations);
-        return "redirect:/specialisation/";
+        return "specialisation";
     }
 
     @GetMapping("/{id}/sort/{title}")
@@ -83,6 +86,33 @@ public class SpecialisationController {
         model.addAttribute("receptionHours", receptionHours);
 
         return "appointment";
+    }
+
+    @GetMapping("/doctor/appoint/{id}")
+    public String makeAppointment(@PathVariable("id") Long id, Principal principal, Model model){
+
+        Doctor doctor = doctorService.getDoctorNoApi(
+                receptionHourRepository.findById(id).get().getDoctor().getId()
+        );
+        List<ReceptionHour> receptionHours = receptionHourService.getAllReceptionHourNoApi(doctor);
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("receptionHours", receptionHours);
+
+
+        boolean check =receptionHourService.makeAppointmentNoApi(id, principal.getName());
+        model.addAttribute("check", check);
+        return "appointment";
+    }
+
+    @GetMapping("/doctor/{id}/sort/available")
+    public String showAvailableOnly(@PathVariable("id") Long id, Model model){
+        Doctor doctor = doctorService.getDoctorNoApi(id);
+        List<ReceptionHour> receptionHours = receptionHourService.getAvailableReceptionHourNoApi(doctor);
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("receptionHours", receptionHours);
+
+        return "appointment";
+
     }
 
 }

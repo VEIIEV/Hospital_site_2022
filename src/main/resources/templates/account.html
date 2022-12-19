@@ -15,7 +15,7 @@
         <li><a th:href="@{/specialisation/}">specialisations</a></li>
         <li><a th:href="@{/diagnosis/}">diagnosis list</a></li>
         <div sec:authorize="isAuthenticated()">
-            <li><a th:href="@{/patientCard}">your card</a></li>
+            <li><a th:href="@{/account}">your card</a></li>
         </div>
         <li><a th:href="@{/faq}">FAQ</a></li>
         <div sec:authorize="isAuthenticated()">
@@ -66,7 +66,7 @@
 
     <div class="col-md-8 mx-auto">
         <h2>Upload Image Example</h2>
-        <form method="post" th:action="@{/patientCard/updateImg}" enctype="multipart/form-data">
+        <form method="post" th:action="@{/account/updateImg}" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="file" name="image" accept="image/*" class="form-control-file">
             </div>
@@ -76,7 +76,7 @@
 
     <div class="col-md-8 mx-auto">
         <h2>update Data</h2>
-        <form method="post" name="patient" th:action="@{/patientCard/updateData/patient}" th:object="${patient}">
+        <form method="post" name="patient" th:action="@{/account/updateData/patient}" th:object="${patient}">
             <input type="text" name="name" th:field="*{name}" placeholder="name"/>
             <input type="text" name="surname" th:field="*{surname}" placeholder="surname"/>
             <input type="text" name="residence" th:field="*{residence}" placeholder="residence"/>
@@ -113,7 +113,7 @@
 
     <div  class="col-md-8 mx-auto">
         <h2>update Data</h2>
-        <form method="post" name="doctor" th:action="@{/patientCard/updateData/doctor}" th:object="${doctor}">
+        <form method="post" name="doctor" th:action="@{/account/updateData/doctor}" th:object="${doctor}">
             <input type="text" name="name" th:field="*{name}" placeholder="name"/>
             <input type="text" name="surname" th:field="*{surname}" placeholder="surname"/>
             <input type="text" name="seniority" th:field="*{seniority}" placeholder="seniority"/>
