@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+    <style>
+        body{background: #edf2f7;}
+        details{
+            display:block;
+            background: #fff;
+            width:400px;
+            box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 8px;
+            overflow:hidden;
+            margin-bottom: 1.5rem;
+        }
+        summary::-webkit-details-marker{display:none;}
+        summary::-moz-list-bullet{list-style-type:none;}
+        summary::marker{display:none;}
+        summary {
+            display:block;
+            padding: .3em 1em .3em .9em;
+            border-bottom: 1px solid #e2e8f0;
+            font-size:1.4em;
+            cursor: pointer;
+            position: relative;
+        }
+        summary:before {
+            top: .4em;
+            right: .3em;
+            color: transparent;
+            background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTYuNTkgOC41OUwxMiAxMy4xNyA3LjQxIDguNTkgNiAxMGw2IDYgNi02eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
+            width: 1em;
+            height: 1em;
+            content: "";
+            position: absolute;
+            transition: transform .5s;
+        }
+        details[open] > summary:before {
+            transform: scale(1,-1);
+        }
+        summary ~ * {
+            padding: 0 1em 10px 1.4em;
+        }
+        details[open] summary ~ *{
+            animation: sweep .5s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0;}
+            100%  {opacity: 1;}
+        }
+        summary:focus {
+            outline:0;
+            box-shadow: inset 0 0 1px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a th:href="@{/hello}">home</a></li>
+        <li><a th:href="@{/specialisation/}">specialisations</a></li>
+        <li><a th:href="@{/patientCard}">your card</a></li>
+        <li><a th:href="@{/diagnosis/}">diagnosis list</a></li>
+        <li><a class="active" th:href="@{/FAQ}">FAQ</a></li>
+
+        <div sec:authorize="hasRole('ADMIN')">this can see admin only</div>
+        <div sec:authorize="hasAuthority('PATIENT')">this can see patient only</div>
+        <div sec:authorize="hasAuthority('DOCTOR')">this can see doctor only</div>
+        <div sec:authorize="hasAuthority('ROLE_DOCTOR')">this can see role_doctor only</div>
+        <div sec:authorize="isAuthenticated()">
+            <li style="float:right"><a th:href="@{/logout}">LOGOUT</a></li>
+        </div>
+        <div sec:authorize="isAuthenticated()==false">
+            <li style="float:right"><a th:href="@{/login}">LOGIN</a></li>
+        </div>
+    </ul>
+</nav>
+<details>
+    <summary>The most asked question</summary>
+    <p>Yes, its work</p>
+</details>
+
+</body>
+</html>

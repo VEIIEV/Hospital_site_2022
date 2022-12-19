@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+</head>
+<body>
+<h1>form</h1>
+
+<div th:align="center">
+    <h1>Please Sign Up</h1>
+
+    <form th:action="@{/registration}" th:object="${userForm}" method="post">
+        <div>
+            <span th:text="${usernameError}"></span>
+            <input type="text" name="userName" placeholder="Username" required/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Password" required/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <div>
+            <input type="text" name="mail" placeholder="mail" required/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></div>
+        </div>
+        <div>
+            <input id="patientRadio" type="radio" name="userRole" value="ROLE_PATIENT" checked="checked" />
+            <label for="patientRadio">patient</label>
+            <input id="doctorRadio" type="radio" name="userRole" value="ROLE_DOCTOR"  />
+            <label for="doctorRadio">doctor</label>
+        </div>
+        <div>
+        </div>
+        <input type="submit" value="sign up"/>
+    </form>
+</div>
+
+<a th:href="@{/login}">login</a>
+</body>
+</html>
+

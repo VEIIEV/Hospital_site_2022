@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a class="active" th:href="@{/hello}">home</a></li>
+        <li><a th:href="@{/specialisation/}">specialisations</a></li>
+        <li><a th:href="@{/diagnosis/}">diagnosis list</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li><a th:href="@{/patientCard}">your card</a></li>
+        </div>
+        <li><a th:href="@{/faq}">FAQ</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li style="float:right"><a th:href="@{/logout}">LOGOUT </a></li>
+        </div>
+        <div sec:authorize="isAuthenticated()==false">
+            <li style="float:right"><a th:href="@{/login}">LOGIN</a></li>
+        </div>
+    </ul>
+</nav>
+
+
+<div sec:authorize="hasAuthority('ROLE_PATIENT')">
+
+    <p>Authenticated user's firstName:</p>
+    <span th:text="${patient.name}"></span>
+    <p>Authenticated user's surname:</p>
+    <span th:text="${patient.surname}"></span>
+    <p>Authenticated user's number:</p>
+    <span th:text="${patient.number}"></span>
+    <p>Authenticated user's residence:</p>
+    <span th:text="${patient.residence}"></span>
+    <p>Authenticated user's UserName:</p>
+    <span th:text="${patient.userName}"></span>
+    <p>Authenticated user's mail:</p>
+    <span th:text="${patient.mail}"></span>
+    <p>Authenticated user's id:</p>
+    <span th:text="${patient.id}"></span>
+    <p>Authenticated user authorities:</p>
+    <span sec:authentication="principal.authorities"></span>
+    <p>Authenticated user photo:</p>
+    <span sec:authentication="principal.image"></span>
+
+
+    <img  th:src="@{src/main/resources/images/img.png}" src="images/img.png" alt="img dont shows"/>
+
+    <img src="C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\src\main\resources\images\img.png" alt="img dont shows"/>
+
+    <img th:attr="src=${user.image}"/>
+    <!-- работает одинаково, одинаково не работает в опере
+    <img th:src="*{'data:image/png;base64,'+user.image}"/>
+    <img th:src="${'data:image/jpeg;charset=utf-8;base64,' + user.image}" alt="">
+    <img th:src="${'data:image/jpeg;charset=utf-8;base64,' + user.getImage()}" alt="">
+
+    -->
+    <div th:style="'background-image:url('+ ${user.image}+');'"></div>
+
+
+    <div class="col-md-8 mx-auto">
+        <h2>Upload Image Example</h2>
+        <form method="post" th:action="@{/patientCard/updateImg}" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="image" accept="image/*" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload image</button>
+        </form>
+    </div>
+
+    <div class="col-md-8 mx-auto">
+        <h2>update Data</h2>
+        <form method="post" name="patient" th:action="@{/patientCard/updateData/patient}" th:object="${patient}">
+            <input type="text" name="name" th:field="*{name}" placeholder="name"/>
+            <input type="text" name="surname" th:field="*{surname}" placeholder="surname"/>
+            <input type="text" name="residence" th:field="*{residence}" placeholder="residence"/>
+            <input type="text" name="number" th:field="*{number}" placeholder="number"/>
+            <button type="submit" class="btn btn-primary">update Data</button>
+        </form>
+    </div>
+
+</div>
+
+<div sec:authorize="hasAuthority('ROLE_DOCTOR')">
+
+    <p>Authenticated user's firstName:</p>
+    <span th:text="${doctor.name}"></span>
+    <p>Authenticated user's surname:</p>
+    <span th:text="${doctor.surname}"></span>
+    <p>Authenticated user's number:</p>
+    <span th:text="${doctor.number}"></span>
+    <p>Authenticated user's seniority:</p>
+    <span th:text="${doctor.seniority}"></span>
+    <p>Authenticated user's specialisation:</p>
+    <span th:text="${doctor.specialisation.name}"></span>
+    <p>Authenticated user's UserName:</p>
+    <span th:text="${doctor.userName}"></span>
+    <p>Authenticated user's mail:</p>
+    <span th:text="${doctor.mail}"></span>
+    <p>Authenticated user's id:</p>
+    <span th:text="${doctor.id}"></span>
+    <p>Authenticated user authorities:</p>
+    <span sec:authentication="principal.authorities"></span>
+    <p>Authenticated user photo:</p>
+    <span sec:authentication="principal.image"></span>
+
+
+    <div  class="col-md-8 mx-auto">
+        <h2>update Data</h2>
+        <form method="post" name="doctor" th:action="@{/patientCard/updateData/doctor}" th:object="${doctor}">
+            <input type="text" name="name" th:field="*{name}" placeholder="name"/>
+            <input type="text" name="surname" th:field="*{surname}" placeholder="surname"/>
+            <input type="text" name="seniority" th:field="*{seniority}" placeholder="seniority"/>
+            <input type="text" name="number" th:field="*{number}" placeholder="number"/>
+            <button type="submit" class="btn btn-primary">update Data</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

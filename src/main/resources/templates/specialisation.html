@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a th:href="@{/hello}">home</a></li>
+        <li><a class="active" th:href="@{/specialisation/}">specialisations</a></li>
+        <li><a th:href="@{/diagnosis/}">diagnosis list</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li><a th:href="@{/patientCard}">your card</a></li>
+        </div>
+        <li><a th:href="@{/faq}">FAQ</a></li>
+
+        <div sec:authorize="hasRole('ADMIN')">this can see admin only</div>
+        <div sec:authorize="hasAuthority('ROLE_PATIENT')">this can see patient only</div>
+        <div sec:authorize="hasAuthority('DOCTOR')">this can see doctor only</div>
+        <div sec:authorize="hasAuthority('ROLE_DOCTOR')">this can see role_doctor only</div>
+        <div sec:authorize="isAuthenticated()">
+            <li style="float:right"><a th:href="@{/logout}">LOGOUT</a></li>
+        </div>
+        <div sec:authorize="isAuthenticated()==false">
+            <li style="float:right"><a th:href="@{/login}">LOGIN</a></li>
+            <li style="float:right"><a th:href="@{/form}">SIGN UP</a></li>
+        </div>
+    </ul>
+</nav>
+
+
+<div th:unless="${#lists.isEmpty(specialisations)}">
+    <h1>List of specialisations</h1>
+    <table border="1">
+        <tr>
+            <th><a th:href="@{/specialisation/sort/{title}(title='name')}" > name</a> </th>
+        </tr>
+        <tr th:each="specialisation : ${specialisations}">
+
+            <td><a th:href="@{/specialisation/{id}(id=${specialisation.id})}"  th:utext="${specialisation.name}" target="_blank"> </a></td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div style="text-align: center">
+    <footer>
+
+        <p style="text-align: center">hello page</p>
+        <p style="text-align: center">INFO</p>
+        <table z style="display: inline-block;">
+            <thead class="table-header">
+            <tr>
+                <th>name</th>
+                <th>address</th>
+                <th>mail</th>
+                <th>number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Elmer</td>
+                <td>1-Y Kol'tsevoy Proyezd, 55-49</td>
+                <td>hospital@mail.ru</td>
+                <td>000-000</td>
+            </tr>
+            </tbody>
+        </table>
+    </footer>
+</div>
+</body>
+</html>
