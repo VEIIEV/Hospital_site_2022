@@ -9,6 +9,7 @@ import com.example.Entity.Diagnosis;
 import com.example.Repository.DiagnosisRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,10 +26,21 @@ public class PatientCardMapper {
 
     public PatientCard toPatientCard(PatientCardDTO patientCardDTO) {
         Patient patient = patientRepository.findById(patientCardDTO.getPatientId()).orElseThrow();
-        Set<Diagnosis> diagnoses = diagnosisRepository.findAllByNameIn(patientCardDTO.getDiagnoses());
+        Optional<Diagnosis> diagnosisOptional = diagnosisRepository.findByName(patientCardDTO.getDiagnosis());
+        //если диагноз есть, то всё норм, если нет, то создаём
+        Diagnosis diagnosis;
+        if (diagnosisOptional.isPresent()) {
+             diagnosis = diagnosisOptional.get();
+        }
+        else{
+             diagnosis = new Diagnosis();
+            diagnosis.setName(patientCardDTO.getDiagnosis());
+            diagnosisRepository.save(diagnosis);
+        }
+
         return new PatientCard(
                 patient,
-                diagnoses,
+                diagnosis,
                 patientCardDTO.getPrescribedTreatment(),
                 patientCardDTO.getAssignDate(),
                 patientCardDTO.getDoctorId()
@@ -36,16 +48,15 @@ public class PatientCardMapper {
     }
 
 
-    public PatientCardDTO toDTO(PatientCard patientCard){
-        Set<String> diagnoses = diagnosisRepository.findAllByPatientCards_id(patientCard.getId()).
-                stream().map(Diagnosis::getName).collect(Collectors.toSet());
+    public PatientCardDTO toDTO(PatientCard patientCard) {
+        String diagnosis = diagnosisRepository.findByName(patientCard.getDiagnosis().getName()).get().getName();
         return new PatientCardDTO(
                 patientCard.getId(),
                 patientCard.getPatient().getId(),
-                patientCard.getDoctor_id(),
+                patientCard.getDoctorId(),
                 patientCard.getPrescribedTreatment(),
                 patientCard.getAssignDate(),
-                diagnoses
+                diagnosis
         );
     }
 

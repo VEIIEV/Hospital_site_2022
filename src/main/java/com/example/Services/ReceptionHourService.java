@@ -2,10 +2,7 @@ package com.example.Services;
 
 import com.example.DTO.ReceptionHourDTO;
 import com.example.Entity.Patient;
-import com.example.Repository.PatientRepository;
-import com.example.Repository.ReceptionHourRepository;
-import com.example.Repository.SpecialisationRepository;
-import com.example.Repository.UserRepository;
+import com.example.Repository.*;
 import com.example.Utils.ReceptionHourMapper;
 import com.example.Entity.Doctor;
 import com.example.Entity.ReceptionHour;
@@ -32,13 +29,16 @@ public class ReceptionHourService {
     private final DoctorService doctorService;
     private final ReceptionHourMapper receptionHourMapper;
     private final SpecialisationRepository specialisationRepository;
+    private final DoctorRepository doctorRepository;
 
     public ReceptionHourService(ReceptionHourRepository receptionHourRepository, DoctorService doctorService, ReceptionHourMapper receptionHourMapper,
-                                SpecialisationRepository specialisationRepository) {
+                                SpecialisationRepository specialisationRepository,
+                                DoctorRepository doctorRepository) {
         this.receptionHourRepository = receptionHourRepository;
         this.doctorService = doctorService;
         this.receptionHourMapper = receptionHourMapper;
         this.specialisationRepository = specialisationRepository;
+        this.doctorRepository = doctorRepository;
     }
 
 
@@ -202,7 +202,22 @@ public class ReceptionHourService {
     }
 
 
+    public List<ReceptionHour> getPatientReceptionHoursNoApi(String name) {
+        Patient patient = (Patient) patientRepository.findByUsername(name);
+        return receptionHourRepository.findAllByPatientAndStatus(patient, 4);
+    }
 
+
+    //возвращает все часы приёма конкретного доктора, на которые кто-то назначен
+    public List<ReceptionHour> getDoctorReceptionHoursNoApi(String name) {
+        Doctor doctor = (Doctor) doctorRepository.findByUsername(name);
+        return receptionHourRepository.findAllByDoctorAndStatus(doctor,4);
+
+    }
+
+    public ReceptionHour getReceptionHourNoApi(Long id) {
+        return receptionHourRepository.findById(id).get();
+    }
 }
 
 

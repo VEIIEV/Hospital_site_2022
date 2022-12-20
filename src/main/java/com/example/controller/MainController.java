@@ -1,16 +1,11 @@
 package com.example.controller;
 
 
-import com.example.Entity.Doctor;
-import com.example.Entity.Hospital;
-import com.example.Entity.Patient;
-import com.example.Entity.User;
-import com.example.Repository.DoctorRepository;
-import com.example.Repository.HospitalRepository;
-import com.example.Repository.PatientRepository;
-import com.example.Repository.UserRepository;
+import com.example.Entity.*;
+import com.example.Repository.*;
 import com.example.Services.DoctorService;
 import com.example.Services.PatientService;
+import com.example.Services.ReceptionHourService;
 import com.example.Services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 
@@ -52,6 +48,11 @@ public class MainController {
     @Autowired
     DoctorService doctorService;
 
+    @Autowired
+    ReceptionHourService receptionHourService;
+    private final ReceptionHourRepository receptionHourRepository;
+    private final PatientCardRepository patientCardRepository;
+
 
     @GetMapping("/hello")
     public String hello(Model model) {
@@ -80,13 +81,21 @@ public class MainController {
     public String account(Model model, Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
-      boolean check= user.getUserRole().name().equals("ROLE_PATIENT");
-        if(check){
+        List<ReceptionHour> receptionHourForAccount;
+
+        if (user.getUserRole().name().equals("ROLE_PATIENT")) {
+            receptionHourForAccount = receptionHourService.getPatientReceptionHoursNoApi(principal.getName());
+            model.addAttribute("receptionHourForAccounts", receptionHourForAccount);
             model.addAttribute("patient", patientRepository.findByUsername(principal.getName()));
-        }
-        else if(user.getUserRole().name().equals("ROLE_DOCTOR")){
+
+
+        } else if (user.getUserRole().name().equals("ROLE_DOCTOR")) {
+            receptionHourForAccount = receptionHourService.getDoctorReceptionHoursNoApi(principal.getName());
+            model.addAttribute("receptionHourForAccounts", receptionHourForAccount);
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
+
         }
+
         model.addAttribute("user", user);
         return "account";
     }
@@ -95,11 +104,11 @@ public class MainController {
     String uploadImage(@RequestParam("image") MultipartFile multipartImage, Principal principal, Model model) throws Exception {
 
         userDetailsService.updateImg(multipartImage, principal);
+
         User user = userRepository.findByUsername(principal.getName());
-        if(user.getUserRole().equals("ROLE_PATIENT")){
+        if (user.getUserRole().equals("ROLE_PATIENT")) {
             model.addAttribute("patient", patientRepository.findByUsername(principal.getName()));
-        }
-        else if(user.getUserRole().equals("ROLE_DOCTOR")){
+        } else if (user.getUserRole().equals("ROLE_DOCTOR")) {
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
         }
         model.addAttribute("user", user);
@@ -109,14 +118,22 @@ public class MainController {
 
     @PostMapping("/account/updateData/patient")
     String updateDataPatient(@ModelAttribute("patient") Patient patient, Principal principal, Model model) throws Exception {
-
+        //
         patientservice.updatePatientData(patient, principal);
+        //
         User user = userRepository.findByUsername(principal.getName());
-        if(user.getUserRole().equals("ROLE_PATIENT")){
+        List<ReceptionHour> receptionHourForAccount;
+
+        if (user.getUserRole().name().equals("ROLE_PATIENT")) {
+            receptionHourForAccount = receptionHourService.getPatientReceptionHoursNoApi(principal.getName());
+            model.addAttribute("receptionHourForAccounts", receptionHourForAccount);
             model.addAttribute("patient", patientRepository.findByUsername(principal.getName()));
-        }
-        else if(user.getUserRole().equals("ROLE_DOCTOR")){
+
+        } else if (user.getUserRole().name().equals("ROLE_DOCTOR")) {
+            receptionHourForAccount = receptionHourService.getDoctorReceptionHoursNoApi(principal.getName());
+            model.addAttribute("receptionHourForAccounts", receptionHourForAccount);
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
+
         }
         model.addAttribute("user", user);
         return "redirect:/account";
@@ -125,17 +142,33 @@ public class MainController {
 
     @PostMapping("/account/updateData/doctor")
     String updateDataDoctor(@ModelAttribute("doctor") Doctor doctor, Principal principal, Model model) throws Exception {
-
+        //
         doctorService.updateDoctor(doctor, principal);
+        //
         User user = userRepository.findByUsername(principal.getName());
-        if(user.getUserRole().equals("ROLE_PATIENT")){
+        List<ReceptionHour> receptionHourForAccount;
+
+        if (user.getUserRole().name().equals("ROLE_PATIENT")) {
+            receptionHourForAccount = receptionHourService.getPatientReceptionHoursNoApi(principal.getName());
+            model.addAttribute("receptionHourForAccounts", receptionHourForAccount);
             model.addAttribute("patient", patientRepository.findByUsername(principal.getName()));
-        }
-        else if(user.getUserRole().equals("ROLE_DOCTOR")){
+
+        } else if (user.getUserRole().name().equals("ROLE_DOCTOR")) {
+            receptionHourForAccount = receptionHourService.getDoctorReceptionHoursNoApi(principal.getName());
+            model.addAttribute("receptionHourForAccounts", receptionHourForAccount);
             model.addAttribute("doctor", doctorRepository.findByUsername(principal.getName()));
+
         }
         model.addAttribute("user", user);
         return "redirect:/account";
+    }
+
+    @GetMapping("/patientcard")
+    String ShowPatientCard(Model model, Principal principal){
+
+        List<PatientCard> patientCards = patientCardRepository.findAllByPatientId(patientRepository.findByUsername(principal.getName()).getId());
+        model.addAttribute("patientCards", patientCards);
+        return "patientCard";
     }
 
 //    @GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)

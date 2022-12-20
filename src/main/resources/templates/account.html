@@ -50,9 +50,10 @@
     <span sec:authentication="principal.image"></span>
 
 
-    <img  th:src="@{src/main/resources/images/img.png}" src="images/img.png" alt="img dont shows"/>
+    <img th:src="@{src/main/resources/images/img.png}" src="images/img.png" alt="img dont shows"/>
 
-    <img src="C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\src\main\resources\images\img.png" alt="img dont shows"/>
+    <img src="C:\Users\world\OneDrive\Рабочий стол\Hospital_site_2022\src\main\resources\images\img.png"
+         alt="img dont shows"/>
 
     <img th:attr="src=${user.image}"/>
     <!-- работает одинаково, одинаково не работает в опере
@@ -62,6 +63,30 @@
 
     -->
     <div th:style="'background-image:url('+ ${user.image}+');'"></div>
+
+    <a th:href="@{/patientcard}" > Больничная карта</a>
+
+    <div th:if="${#lists.isEmpty(receptionHourForAccounts)}">
+        <p>         Ваше расписание пусто</p>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(receptionHourForAccounts)}">
+        <h1>your schedule</h1>
+        <table border="1">
+            <tr>
+                <th>data Time</th>
+                <th>doctor</th>
+                <th>doctor's number</th>
+            </tr>
+            <tr th:each="receptionHourForAccount : ${receptionHourForAccounts}">
+
+                <td><p th:text="${receptionHourForAccount.dateTime}"></p></td>
+                <td><p th:text="${receptionHourForAccount.doctor.name}"></p></td>
+                <td><p th:text="${receptionHourForAccount.doctor.number}"></p></td>
+            </tr>
+        </table>
+
+    </div>
 
 
     <div class="col-md-8 mx-auto">
@@ -110,8 +135,32 @@
     <p>Authenticated user photo:</p>
     <span sec:authentication="principal.image"></span>
 
+    <div th:if="${#lists.isEmpty(receptionHourForAccounts)}">
+        <p>Ваше расписание пусто</p>
+    </div>
 
-    <div  class="col-md-8 mx-auto">
+    <div th:unless="${#lists.isEmpty(receptionHourForAccounts)}">
+        <h1>your schedule</h1>
+        <table border="1">
+            <tr>
+                <th>data Time</th>
+                <th>patient</th>
+                <th>patient's number</th>
+                <th>put a conclusion</th>
+            </tr>
+            <tr th:each="receptionHourForAccount : ${receptionHourForAccounts}">
+
+                <td><p th:text="${receptionHourForAccount.dateTime}"></p></td>
+                <td><p th:text="${receptionHourForAccount.patient.name}"></p></td>
+                <td><p th:text="${receptionHourForAccount.patient.number}"></p></td>
+                <td><a th:href="@{/diagnosis/diagnose/{id}(id=${receptionHourForAccount.id})}">put a conclusion</a></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+    <div class="col-md-8 mx-auto">
         <h2>update Data</h2>
         <form method="post" name="doctor" th:action="@{/account/updateData/doctor}" th:object="${doctor}">
             <input type="text" name="name" th:field="*{name}" placeholder="name"/>

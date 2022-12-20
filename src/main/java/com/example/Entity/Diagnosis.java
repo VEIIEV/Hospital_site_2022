@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,22 +19,24 @@ public class Diagnosis {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToMany(mappedBy = "diagnoses")
-    private Set<PatientCard> patientCards = new LinkedHashSet<>();
-
     @Column(name = "name")
     private String name;
 
     @Column(name = "discription")
     private String discription;
 
-    public Set<PatientCard> getPatientCards() {
-        return patientCards;
-    }
+    @OneToMany(mappedBy = "diagnosis", orphanRemoval = true)
+    private Set<PatientCard> patientCards = new LinkedHashSet<>();
 
     public void setPatientCards(Set<PatientCard> patientCards) {
         this.patientCards = patientCards;
     }
+
+    public Set<PatientCard> getPatientCards() {
+        return patientCards;
+    }
+
+
 
 
     public Long getId() {

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+</head>
+<body>
+<form  th:action="@{/diagnosis/save}"  th:object="${patientCard}" method="post">
+    <input type="hidden" name="patientId" th:value="${receptionHour.patient.id}"></p>
+    <input type="hidden" name="assignDate"  th:value="${#strings.toString(receptionHour.dateTime)}"></p>
+    <input type="hidden" name="doctorId"  th:value="${receptionHour.doctor.id}"></p>
+    <div>
+        <label for="field1">prescribedTreatment</label>
+        <input type="text" id="field1" name="prescribedTreatment"/>
+    </div>
+    <div>
+        <label for="field2">diagnosis</label>
+        <input type="text" id="field2" name="diagnosis" />
+    </div>
+
+
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+</body>
+</html>

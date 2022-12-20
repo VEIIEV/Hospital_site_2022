@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="MyCss.css">
+    <link rel="stylesheet" type="text/css" href="Navcss.css">
+</head>
+<body>
+
+
+<div th:unless="${#lists.isEmpty(patientCards)}">
+    <h1>your schedule</h1>
+    <table border="1">
+        <tr>
+            <th>assignDate</th>
+            <th>diagnosis</th>
+            <th>prescribedTreatment</th>
+        </tr>
+        <tr th:each="patientCard : ${patientCards}">
+
+            <td><p th:text="${patientCard.assignDate}"></p></td>
+            <td><p th:text="${patientCard.diagnosis.name}"></p></td>
+            <td><p th:text="${patientCard.prescribedTreatment}"></p></td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

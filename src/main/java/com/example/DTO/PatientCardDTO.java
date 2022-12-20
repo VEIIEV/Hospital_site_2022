@@ -14,15 +14,15 @@ public class PatientCardDTO {
 
     private String assignDate;
 
-    private Set<String> diagnoses;
+    private String diagnosis;
 
-    public PatientCardDTO(Long id, Long patientId, Long doctorId, String prescribedTreatment, String assignDate, Set<String> diagnoses) {
+    public PatientCardDTO(Long id, Long patientId, Long doctorId, String prescribedTreatment, String assignDate, String diagnosis) {
         this.id = id;
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.prescribedTreatment = prescribedTreatment;
         this.assignDate = assignDate;
-        this.diagnoses = diagnoses;
+        this.diagnosis = diagnosis;
     }
 
     public Long getId() {
@@ -65,11 +65,11 @@ public class PatientCardDTO {
         this.assignDate = assignDate;
     }
 
-    public Set<String> getDiagnoses() {
-        return diagnoses;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setDiagnoses(Set<String> diagnoses) {
-        this.diagnoses = diagnoses;
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 }

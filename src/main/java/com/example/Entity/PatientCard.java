@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -14,22 +13,19 @@ import java.util.Set;
 @NoArgsConstructor
 public class PatientCard {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diag_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diag_seq")
     @SequenceGenerator(name = "diag_gen", sequenceName = "diag_seq")
     @Column(name = "id", nullable = false)
     private Long id;
-
-
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToMany
-    @JoinTable(name = "patient_card_diagnoses",
-            joinColumns = @JoinColumn(name = "patient_card_id"),
-            inverseJoinColumns = @JoinColumn(name = "diagnoses_id"))
-    private Set<Diagnosis>  diagnoses = new LinkedHashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "diagnosis_id")
+    private Diagnosis diagnosis;
+
 
     @Column(name = "prescribed_treatment")
     private String prescribedTreatment;
@@ -41,21 +37,19 @@ public class PatientCard {
     private Long doctorId;
 
 
-    public Set<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
 
-    public void setDiagnoses(Set<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
 
-    public PatientCard(Patient patient, Set<Diagnosis> diagnoses, String prescribedTreatment, String assignDate, Long doctorId) {
+
+
+    public PatientCard(Patient patient, Diagnosis diagnoses, String prescribedTreatment, String assignDate, Long doctorId) {
         this.patient = patient;
-        this.diagnoses = diagnoses;
+        this.diagnosis = diagnoses;
         this.prescribedTreatment = prescribedTreatment;
         this.assignDate = assignDate;
         this.doctorId = doctorId;
     }
+
+
 
 
 
@@ -91,11 +85,17 @@ public class PatientCard {
         this.id = id;
     }
 
-    public Long getDoctor_id() {
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(Diagnosis diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public Long getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctor_id(Long doctorId) {
-        this.doctorId = doctorId;
-    }
+
 }

@@ -19,8 +19,8 @@ public interface PatientCardRepository extends CrudRepository<PatientCard, Long>
 
     List<PatientCard> findAll();
 
-    @Query("select p from PatientCard p inner join p.diagnoses diagnoses where diagnoses.name = ?1")
-    List<PatientCard> findAllByDiagnoses_name(String name);
+//    @Query("select p from PatientCard p inner join p.diagnoses diagnoses where diagnoses.name = ?1")
+//    List<PatientCard> findAllByDiagnoses_name(String name);
 
     @Modifying
     void deleteAllBy();
@@ -36,10 +36,11 @@ public interface PatientCardRepository extends CrudRepository<PatientCard, Long>
     Set<UniversalDTO> findByCountedDoctorId();
 
     @Query("select p from PatientCard p where p.patient.id = ?1")
-    Set<PatientCard> findAllByPatientId(Long patientId);
+    List<PatientCard> findAllByPatientId(Long patientId);
 
 
-    @Query("select new com.example.DTO.UniversalDTO( d.id,  d.patientCards.size) " +
-            "from Diagnosis  d")
-    Set<UniversalDTO> findByCountedDiagnoses();
+//    @Query("select new com.example.DTO.UniversalDTO( d.id,  d.patientCards.size) " +
+//            "from Diagnosis  d")
+//    Set<UniversalDTO> findByCountedDiagnoses();
+
 }
