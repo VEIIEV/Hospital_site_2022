@@ -1395,3 +1395,19 @@ java.io.StreamCorruptedException: invalid type code: 00
 2022-12-20 04:58:24.901  INFO 22312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2022-12-20 04:58:25.653  WARN 22312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2022-12-20 04:58:26.101  INFO 22312 --- [restartedMain] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 4.202 seconds (JVM running for 4.752)
+2022-12-20 05:00:26.922  INFO 22312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-20 05:00:26.925  INFO 22312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-20 05:00:30.056  INFO 20120 --- [restartedMain] com.example.HospitalSite2022Application  : Starting HospitalSite2022Application using Java 19.0.1 on DESKTOP-2NIGHVL with PID 20120 (C:\Users\world\OneDrive\Рабочий стол\ершов\Hospital_site_2022-001588c228914e9e62fa85f270d2a8a57a02196d\target\classes started by world in C:\Users\world\OneDrive\Рабочий стол\ершов\Hospital_site_2022-001588c228914e9e62fa85f270d2a8a57a02196d)
+2022-12-20 05:00:30.058  INFO 20120 --- [restartedMain] com.example.HospitalSite2022Application  : No active profile set, falling back to 1 default profile: "default"
+2022-12-20 05:00:31.474  INFO 20120 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-20 05:00:31.474  INFO 20120 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-20 05:00:31.571  INFO 20120 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-20 05:00:31.722  INFO 20120 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-20 05:00:31.753  INFO 20120 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-20 05:00:31.870  INFO 20120 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-20 05:00:31.941  INFO 20120 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-20 05:00:32.053  INFO 20120 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-20 05:00:32.075  INFO 20120 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-12-20 05:00:32.819  INFO 20120 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-20 05:00:33.508  WARN 20120 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-20 05:00:33.925  INFO 20120 --- [restartedMain] com.example.HospitalSite2022Application  : Started HospitalSite2022Application in 4.238 seconds (JVM running for 4.817)

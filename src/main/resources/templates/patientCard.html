@@ -9,6 +9,24 @@
 </head>
 <body>
 
+<nav>
+    <ul>
+        <li><a class="active" th:href="@{/hello}">home</a></li>
+        <li><a th:href="@{/specialisation/}">specialisations</a></li>
+        <li><a th:href="@{/diagnosis/}">diagnosis list</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li><a th:href="@{/account}">your card</a></li>
+        </div>
+        <li><a th:href="@{/faq}">FAQ</a></li>
+        <div sec:authorize="isAuthenticated()">
+            <li style="float:right"><a th:href="@{/logout}">LOGOUT </a></li>
+        </div>
+        <div sec:authorize="isAuthenticated()==false">
+            <li style="float:right"><a th:href="@{/login}">LOGIN</a></li>
+        </div>
+    </ul>
+</nav>
+
 
 <div th:unless="${#lists.isEmpty(patientCards)}">
     <h1>your schedule</h1>
